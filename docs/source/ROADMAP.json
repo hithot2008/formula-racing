@@ -1,0 +1,78 @@
+{
+  "paths": {
+    "zh": "docs/ROADMAP.md",
+    "en": "docs/ROADMAP.en.md"
+  },
+  "title": {
+    "zh": "開發狀態",
+    "en": "Development status"
+  },
+  "sections": [
+    {
+      "id": "section-01",
+      "zh": {
+        "heading": "v0.1 可玩首版 — 已實作",
+        "body": "- [x] Three.js + Vite 本機瀏覽器遊戲與 Mac 啟動腳本\n- [x] 8 條程序生成原創賽道、乾地／濕地／黃昏／夜間環境\n- [x] 容易／進階／專業駕駛輔助、AI 強度與車損設定\n- [x] 120 Hz 固定步長簡化物理、煞車、轉向、抓地與碰撞\n- [x] 5 名 AI 對手與 3 圈大獎賽\n- [x] 2 圈計時、1 圈技巧挑戰及金銀銅獎章\n- [x] 有效圈速、本機紀錄與個人最佳圈幽靈車\n- [x] 回正罰停、維修格、能源加速、輪胎磨耗\n- [x] 追車／座艙／車頂鏡頭、音效、HUD、小地圖\n- [x] 瀏覽器操作驗證、完整完賽驗證、單元測試及正式建置"
+      },
+      "en": {
+        "heading": "v0.1 playable first release — implemented",
+        "body": "- [x] Three.js + Vite local-browser game and Mac launcher\n- [x] 8 procedural original circuits with dry/wet/sunset/night environments\n- [x] Easy/Advanced/Pro assists, AI strength and damage settings\n- [x] Simplified 120 Hz fixed-step physics, braking, steering, grip and collisions\n- [x] 5 AI opponents and a 3-lap Grand Prix\n- [x] 2-lap time trial, 1-lap skill challenge and gold/silver/bronze medals\n- [x] Valid lap timing, local records and personal best ghost\n- [x] Reset stops, pit box, energy boost and tyre wear\n- [x] Chase/cockpit/roof views, sound, HUD and minimap\n- [x] Browser interactions, full-race verification, unit tests and production build"
+      }
+    },
+    {
+      "id": "section-02",
+      "zh": {
+        "heading": "與原始完整設計的差距",
+        "body": "下列仍屬後續開發，不代表 v0.1 已完成：\n\n- [ ] 真正的三維懸吊、路緣動態、重量轉移與胎溫抓地模型\n- [ ] 獨立變速箱、手動換檔及引擎動力曲線調校\n- [ ] 排位、錦標賽與完整生涯解鎖\n- [ ] 正式進站車道、AI 進站策略、複合胎與維修規則\n- [ ] 完整旗號、搶跑、車損退賽及比賽處罰\n- [ ] 動態天候與乾燥路線\n- [ ] 高擬真美術、完整回放及工程師語音\n- [ ] 原生桌面包裝、方向盤與力回饋"
+      },
+      "en": {
+        "heading": "Gaps against the original full design",
+        "body": "These remain future work, not completed v0.1 features:\n\n- [ ] Full three-dimensional suspension, kerb dynamics, weight transfer and temperature-dependent tyre grip\n- [ ] Independent transmission, manual shifting and engine torque-curve tuning\n- [ ] Qualifying, championship and full career unlocks\n- [ ] Formal pit lanes, AI pit strategy, tyre compounds and service rules\n- [ ] Complete flags, false starts, damage retirement and race penalties\n- [ ] Dynamic weather and drying lines\n- [ ] High-fidelity art, full replay and engineer voice\n- [ ] Native desktop packaging, steering wheels and force feedback"
+      }
+    },
+    {
+      "id": "section-03",
+      "zh": {
+        "heading": "執行原則",
+        "body": "每階段區分已實作、已驗證及未測項目。先驗證手感與完整比賽流程，再投入高成本美術。此版本不聲稱已達到最初完整設計的全部功能。"
+      },
+      "en": {
+        "heading": "Working principles",
+        "body": "Distinguish implemented, verified and untested items at every stage. Validate handling and full race flows before investing in costly art. This release does not claim to implement the entire original design."
+      }
+    },
+    {
+      "id": "section-04",
+      "zh": {
+        "heading": "英文版本 — 已實作",
+        "body": "- [x] 選單語言切換與偏好保存\n- [x] 8 條賽道名稱、地點與特性翻譯\n- [x] 模式、HUD、提示、操作指南與結算翻譯\n- [x] 中英文共用既有圈速、獎章與幽靈車存檔\n- [x] 英文桌面／手機版面與瀏覽器流程驗證\n- [x] 英文 README 與回歸測試"
+      },
+      "en": {
+        "heading": "English version — implemented",
+        "body": "- [x] Menu language selection and preference persistence\n- [x] Names, locations and characteristics for 8 circuits\n- [x] Mode, HUD, message, guide and result translations\n- [x] Shared Chinese/English lap records, medals and ghost saves\n- [x] English desktop/mobile layout and browser-flow verification\n- [x] English README and regression tests"
+      }
+    },
+    {
+      "id": "section-05",
+      "zh": {
+        "heading": "六種背景音樂 — 已實作",
+        "body": "- [x] 六種原創合成編曲與分段變化\n- [x] 試聽、選曲、獨立音量及偏好保存\n- [x] 暫停、完賽與失焦停止，繼續比賽恢復\n- [x] 中英文音樂介面與音訊渲染／操作驗證"
+      },
+      "en": {
+        "heading": "Six background music styles — implemented",
+        "body": "- [x] Six original synthesized arrangements and section variations\n- [x] Preview, track selection, independent volume and saved preferences\n- [x] Stop on pause, finish and blur; restore on race resume\n- [x] Chinese/English music interface and audio-render/interaction verification"
+      }
+    },
+    {
+      "id": "section-06",
+      "zh": {
+        "heading": "雙語維護 — 已實作",
+        "body": "- [x] 五組完整中英文文件及相互連結\n- [x] 成對章節來源、Markdown 產生器與 CI 一致性檢查\n- [x] 同一提交更新兩種語言的維護規則"
+      },
+      "en": {
+        "heading": "Bilingual maintenance — implemented",
+        "body": "- [x] Five complete paired Chinese/English documents with reciprocal links\n- [x] Paired section sources, Markdown generator and CI consistency checks\n- [x] Maintenance rules requiring both languages in the same commit"
+      }
+    }
+  ]
+}

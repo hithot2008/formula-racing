@@ -1,0 +1,100 @@
+{
+  "paths": {
+    "zh": "README.md",
+    "en": "README.en.md"
+  },
+  "title": {
+    "zh": "FORMULA / 01",
+    "en": "FORMULA / 01"
+  },
+  "sections": [
+    {
+      "id": "section-00",
+      "zh": {
+        "heading": "",
+        "body": "選單上方的 **Language** 可切換 English／繁體中文；語言偏好會保存，切換不影響既有圈速、獎章與幽靈車紀錄。\n\n可在本機瀏覽器遊玩的 3D 方程式賽車遊戲。中英文介面，原創賽道與車輛，使用 Three.js 渲染。\n\n![賽道選單](artifacts/menu.png)"
+      },
+      "en": {
+        "heading": "",
+        "body": "The **Language** menu switches between English and Traditional Chinese. Your preference persists without changing existing lap records, medals or ghost laps.\n\nA locally playable 3D formula racing game with Chinese and English interfaces, original circuits and cars, rendered with Three.js.\n\n![Circuit selection](artifacts/menu-en.png)"
+      }
+    },
+    {
+      "id": "section-01",
+      "zh": {
+        "heading": "啟動",
+        "body": "需要 Node.js 22+ 與支援 WebGL 的現代瀏覽器。Mac 可以雙擊 **啟動遊戲.command**，或在專案目錄執行：\n\n```sh\nnpm ci\nnpm run dev\n```\n\n開啟終端顯示的本機網址（預設 http://127.0.0.1:5173）。遊戲資源隨專案打包，遊玩時不需要 CDN、帳號或外部素材服務。第一次安裝依賴需要網路。"
+      },
+      "en": {
+        "heading": "Getting started",
+        "body": "Requires Node.js 22+ and a modern WebGL-capable browser. On Mac, double-click **啟動遊戲.command**, or run these commands in the project directory:\n\n```sh\nnpm ci\nnpm run dev\n```\n\nOpen the local URL printed by the terminal (default http://127.0.0.1:5173). Game assets are bundled with the project; playing requires no CDN, account or external asset service. The initial dependency installation requires internet access."
+      }
+    },
+    {
+      "id": "section-02",
+      "zh": {
+        "heading": "已實作",
+        "body": "- 8 條不同路線與環境的原創賽道，包含乾地、濕地、黃昏與夜間。\n- 容易、進階、專業難度：不同駕駛輔助、AI 目標速度與碰撞損傷倍率。\n- 大獎賽：玩家與 5 名 AI 對手競賽 3 圈，起跑倒數、即時排名與完賽獎章。\n- 計時挑戰：2 圈最佳有效圈速、個人紀錄及最佳圈幽靈車。\n- 技巧挑戰：1 圈保持賽道內、不回正、車損低於 5%。\n- 每條賽道有 3 種挑戰，共 24 個挑戰組合；紀錄再依難度分組。\n- 固定 120 Hz 物理步長、抓地限制、轉向慣性、制動、濕地差異、空力速度效應、輪胎磨耗、能源加速與碰撞。\n- 三種攝影機、引擎合成音效、小地圖、即時車況與圈速。\n- 維修格換胎與修復、回正罰停、暫停、重新起跑及本機存檔。\n- 鍵盤、螢幕觸控按鈕與標準 Gamepad API 輸入。"
+      },
+      "en": {
+        "heading": "Implemented features",
+        "body": "- 8 original circuits with distinct routes and environments, including dry, wet, sunset and night conditions.\n- Easy, Advanced and Pro difficulty: different driving assistance, AI target speeds and collision damage multipliers.\n- Grand Prix: race 5 AI opponents over 3 laps, with a start countdown, live standings and finishing medals.\n- Time trial: 2 laps with best valid lap times, personal records and a personal best ghost.\n- Skill challenge: 1 lap inside the track limits, without resetting and with less than 5% damage.\n- Each circuit offers 3 challenges, giving 24 combinations; records are further separated by difficulty.\n- Fixed 120 Hz physics steps, grip limits, steering inertia, braking, wet-road differences, speed-dependent aero effects, tyre wear, energy boost and collisions.\n- Three cameras, synthesized engine sound, minimap, live car status and lap timing.\n- Pit-box tyre changes and repairs, reset stops, pause, restart and local saves.\n- Keyboard, on-screen touch buttons and standard Gamepad API input."
+      }
+    },
+    {
+      "id": "section-03",
+      "zh": {
+        "heading": "操作",
+        "body": "| 操作 | 按鍵 |\n| --- | --- |\n| 油門 / 煞車 | W / S 或 ↑ / ↓ |\n| 左轉 / 右轉 | A / D 或 ← / → |\n| 能源加速 | Space |\n| 切換追車、座艙、車頂鏡頭 | C |\n| 暫停 / 繼續 | Esc |\n| 回正，原地罰停 5 秒並取消該圈有效性 | R |\n| 背景音樂開關 | M |\n| 維修 | 在起終點後右側綠色格停穩，按 P |\n\n標準手把：左搖桿轉向、RT 油門、LT 煞車、A 能源加速。手把需瀏覽器正確回報標準 mapping；尚未使用實體手把驗證。\n\n紀錄保存在目前瀏覽器的 localStorage。不同瀏覽器或不同來源網址的存檔獨立，清除瀏覽資料會移除紀錄。幽靈車不碰撞其他車輛。"
+      },
+      "en": {
+        "heading": "Controls",
+        "body": "| Action | Key |\n| --- | --- |\n| Throttle / brake | W / S or ↑ / ↓ |\n| Steer left / right | A / D or ← / → |\n| Energy boost | Space |\n| Switch chase, cockpit and roof cameras | C |\n| Pause / resume | Esc |\n| Reset car, stop for 5 seconds and invalidate the current lap | R |\n| Toggle background music | M |\n| Pit service | Stop in the green box on the right after the start line, then press P |\n\nStandard gamepad: left stick to steer, RT throttle, LT brake and A energy boost. The browser must report a standard mapping; physical gamepads have not been tested.\n\nRecords are stored in this browser's localStorage. Different browsers and URL origins have separate saves; clearing browser data removes them. Ghost cars do not collide with other cars."
+      }
+    },
+    {
+      "id": "section-04",
+      "zh": {
+        "heading": "驗證與建置",
+        "body": "```sh\nnpm test\nnpm run build\nnpm run preview\n```\n\n在另一個終端啟動開發伺服器後，可執行 `npm run test:browser`。測試預設使用 macOS 的 Google Chrome；其他平台可透過 `CHROME_PATH` 指向 Chrome 執行檔。\n\n```sh\nnpm run dev -- --port 5173 --strictPort\n# In another terminal\nnpm run test:browser\nnpm run test:english\nnpm run test:steering\nnpm run test:music\nnpm run docs:check\n```\n\n瀏覽器驗證包含實際按鍵操作及完整比賽流程。加速跑完整比賽的驗證入口只存在於開發建置，正式版本不提供。"
+      },
+      "en": {
+        "heading": "Validation and builds",
+        "body": "```sh\nnpm test\nnpm run build\nnpm run preview\n```\n\nAfter starting the development server in another terminal, run `npm run test:browser`. Tests default to Google Chrome on macOS; use `CHROME_PATH` to point to a Chrome executable on other platforms.\n\n```sh\nnpm run dev -- --port 5173 --strictPort\n# In another terminal\nnpm run test:browser\nnpm run test:english\nnpm run test:steering\nnpm run test:music\nnpm run docs:check\n```\n\nBrowser validation includes actual keyboard input and complete race flows. The accelerated race verification interface is available only in development builds, never in production builds."
+      }
+    },
+    {
+      "id": "section-05",
+      "zh": {
+        "heading": "版本範圍",
+        "body": "這是 **v0.1 可玩首版**。目前採程序生成 3D 模型及簡化的平面車輛物理，尚不是工程級 F1 模擬器。視覺、懸吊與動態重量轉移的完整模擬仍需深化；檔位為自動顯示與音效映射，沒有手排傳動模型。胎溫目前只在內部計算，尚未影響抓地。\n\n完整生涯／錦標賽、排位、正式進站車道與 AI 進站策略、完整旗號處罰、動態天候、官方品牌授權、高擬真美術與方向盤力回饋尚未實作。8 個賽道均可直接選擇；24 個挑戰是賽道與模式組合，並非 24 套獨立腳本。\n\n詳細資料見 [設計規格](docs/GAME_DESIGN.md)、[開發狀態](docs/ROADMAP.md) 與 [驗證紀錄](docs/VALIDATION.md)。"
+      },
+      "en": {
+        "heading": "Release scope",
+        "body": "This is the **v0.1 playable first release**. It uses procedural 3D models and simplified planar vehicle physics, not an engineering-grade F1 simulator. Visuals, suspension and full dynamic weight transfer need further development; gears are automatically displayed and mapped to sound, without a manual transmission model. Tyre temperature is calculated internally but does not yet affect grip.\n\nFull career/championship modes, qualifying, formal pit lanes and AI pit strategy, complete flag penalties, dynamic weather, official brand licensing, high-fidelity art and steering-wheel force feedback are not implemented. All 8 circuits are directly selectable; the 24 challenges are circuit/mode combinations, not 24 independently scripted scenarios.\n\nSee the [design specification](docs/GAME_DESIGN.en.md), [development status](docs/ROADMAP.en.md) and [validation record](docs/VALIDATION.en.md) for details."
+      }
+    },
+    {
+      "id": "section-06",
+      "zh": {
+        "heading": "六種背景音樂",
+        "body": "在選單的「背景音樂」區塊選曲、試聽並調整獨立音量；曲目、音量與開關會保存。比賽中可點擊「音樂 M」或按 M 切換開關。音樂與引擎音效各自控制。\n\n| 曲目 | 風格 | BPM |\n| --- | --- | --- |\n| 極速電音 / Apex Energy | Electro House | 128 |\n| 霓虹疾馳 / Neon Drive | Synthwave | 110 |\n| 紅線鼓打 / Redline Rush | Drum & Bass | 174 |\n| 隧道脈衝 / Tunnel Pulse | Techno | 138 |\n| 地平線衝刺 / Horizon Sprint | Trance | 140 |\n| 起跑碎拍 / Grid Breaks | Breakbeat | 132 |\n\n六首均由本專案的 Web Audio 合成器即時編曲，包含鼓組、低音、旋律與分段變化；不依賴第三方歌曲、取樣檔或串流服務。首次播放需點擊「試聽」或開始比賽；重新載入頁面不會自行播放。暫停、完賽與視窗失焦會停止音樂，繼續比賽時恢復。\n\n執行 `npm run test:music` 可驗證六首音訊渲染、播放生命週期及偏好保存。"
+      },
+      "en": {
+        "heading": "Six background music styles",
+        "body": "Choose a track, preview it and adjust its independent volume in the Background music section. Track, volume and enabled state persist. During a race, click Music M or press M to toggle playback. Music and engine sound have separate controls.\n\n| Track | Style | BPM |\n| --- | --- | --- |\n| Apex Energy | Electro House | 128 |\n| Neon Drive | Synthwave | 110 |\n| Redline Rush | Drum & Bass | 174 |\n| Tunnel Pulse | Techno | 138 |\n| Horizon Sprint | Trance | 140 |\n| Grid Breaks | Breakbeat | 132 |\n\nAll six tracks are arranged live by the project's Web Audio synthesizer, including drums, bass, melodies and section variations. No third-party songs, samples or streaming services are required. Initial playback requires Preview or starting a race; reloading does not autoplay. Pausing, finishing or window blur stops the music; resuming the race restores it.\n\nRun `npm run test:music` to verify all six audio renders, playback lifecycle and preference persistence."
+      }
+    },
+    {
+      "id": "section-07",
+      "zh": {
+        "heading": "文件與版本同步",
+        "body": "中英文使用同一套遊戲程式與存檔格式。每次功能、操作、限制或驗證結果改動，都要在同一提交中更新兩種語言的介面與文件。\n\n文件成對涵蓋 README、設計規格、開發狀態、驗證紀錄與貢獻指南。請閱讀 [維護規則](CONTRIBUTING.md)；編輯 `docs/source/*.json` 中同一章節的 `zh` 與 `en`，執行 `npm run docs:generate` 產生 Markdown，再執行 `npm run docs:check`。\n\nGitHub CI 會檢查雙語欄位、章節、清單與表格結構、指令區塊、數值及輸出檔案同步。自動檢查無法證明翻譯語意完全相同，仍須人工逐項核對。"
+      },
+      "en": {
+        "heading": "Documentation and version parity",
+        "body": "Chinese and English use the same game code and save format. Every change to features, controls, limitations or validation results must update both interfaces and documentation in the same commit.\n\nPaired documents cover the README, design specification, development status, validation record and contribution guide. Read the [maintenance rules](CONTRIBUTING.en.md); edit `zh` and `en` for the same section in `docs/source/*.json`, run `npm run docs:generate` to produce Markdown, then run `npm run docs:check`.\n\nGitHub CI checks bilingual fields, sections, list and table structure, command blocks, numeric values and generated-file synchronization. Automation cannot prove semantic equivalence; each item still requires human review."
+      }
+    }
+  ]
+}

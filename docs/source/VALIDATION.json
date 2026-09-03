@@ -1,0 +1,89 @@
+{
+  "paths": {
+    "zh": "docs/VALIDATION.md",
+    "en": "docs/VALIDATION.en.md"
+  },
+  "title": {
+    "zh": "v0.1 驗證紀錄",
+    "en": "v0.1 validation record"
+  },
+  "sections": [
+    {
+      "id": "section-00",
+      "zh": {
+        "heading": "",
+        "body": "日期：2026-09-03。環境：macOS、Node.js 22.15.1、Google Chrome、Playwright。瀏覽器測試使用軟體 WebGL；未據此聲稱實機 GPU 的目標幀率。"
+      },
+      "en": {
+        "heading": "",
+        "body": "Date: 2026-09-03. Environment: macOS, Node.js 22.15.1, Google Chrome and Playwright. Browser tests used software WebGL; these results do not establish a target framerate on real GPUs."
+      }
+    },
+    {
+      "id": "section-01",
+      "zh": {
+        "heading": "通過",
+        "body": "- 車輛核心共 8 項 Node 測試：8 條閉合賽道、加速與煞停、濕地延長煞停距離、30/60 FPS 固定步長一致性、回正處罰、碰撞分離、AI 在 8 條賽道完成單圈，以及左右轉向回歸。\n- Chrome 真實 DOM／鍵盤操作：選關、倒數、6 車起跑、加速、暫停凍結模擬、鏡頭切換、回正 +5 秒、操作指南、設定保存。\n- 使用開發模式的固定步長驗證入口跑完 3 圈大獎賽、2 圈計時和 1 圈技巧挑戰；確認結果介面、最佳有效圈與幽靈車存檔。\n- 1440 × 1000 桌面畫面截圖及 390 × 844 手機選單截圖；選單沒有橫向溢出。\n- 無未捕捉 JavaScript 頁面錯誤。\n- `npm run build` 成功；引擎拆分為獨立載入區塊。\n- 更新 Vite 至 6.4.3 後，npm 安裝稽核回報 0 個漏洞。\n\n截圖位於 `artifacts/`，物理測試位於 `tests/physics.test.js`，瀏覽器驗證位於 `tests/browser.mjs`。"
+      },
+      "en": {
+        "heading": "Passed checks",
+        "body": "- 8 vehicle-core Node tests: 8 closed circuits, acceleration/stopping, longer wet stopping distances, fixed-step consistency at 30/60 FPS, reset penalties, collision separation, AI completing a lap on all 8 circuits, and left/right steering regression.\n- Chrome DOM/keyboard actions: circuit selection, countdown, 6-car start, acceleration, pause freezing simulation, camera changes, reset +5 seconds, guide and saved settings.\n- The development fixed-step interface completed a 3-lap Grand Prix, 2-lap time trial and 1-lap skill challenge, verifying results, best valid laps and ghost saves.\n- Desktop captures at 1440 × 1000 and mobile menu captures at 390 × 844; no horizontal menu overflow.\n- No uncaught JavaScript page errors.\n- `npm run build` succeeded; the engine is a separate bundle.\n- After updating Vite to 6.4.3, the npm installation audit reported 0 vulnerabilities.\n\nScreenshots are in `artifacts/`, physics tests in `tests/physics.test.js` and browser verification in `tests/browser.mjs`."
+      }
+    },
+    {
+      "id": "section-02",
+      "zh": {
+        "heading": "驗證邊界",
+        "body": "完整賽事測試採程式控制駕駛並加速模擬時間，並非真人手動跑完全程。尚未實測方向盤、實體手把、手機觸控裝置、Safari 或最低硬體效能。維修格已實作，但未包含於這輪自動瀏覽器互動測試。不同天候的物理及賽道可完賽性經模型測試，並不代表所有場景都通過完整美術驗收。"
+      },
+      "en": {
+        "heading": "Verification boundaries",
+        "body": "Full-race tests used program-controlled driving and accelerated simulation, not a human manually driving the entire race. Steering wheels, physical gamepads, touch devices, Safari and minimum hardware performance remain untested. The pit box is implemented but full servicing was not included in this browser-interaction pass. Model tests cover weather physics and circuit completion, not complete art acceptance for every environment."
+      }
+    },
+    {
+      "id": "section-03",
+      "zh": {
+        "heading": "左右轉向修正",
+        "body": "修正 +Z 前進座標下的轉向正負號；AI 的轉向輸出同步換算。右側維修格也改到駕駛視角的右側。新增三種難度、三種車頭方向、左右兩側的 18 組物理斷言，以及 `npm run test:steering` 瀏覽器按鍵回歸測試。"
+      },
+      "en": {
+        "heading": "Left/right steering correction",
+        "body": "Corrected steering signs with +Z forward and converted AI steering output accordingly. The pit box is also on the driver's right. Added 18 physics assertions spanning three difficulties, three headings and both directions, plus the `npm run test:steering` browser-keyboard regression."
+      }
+    },
+    {
+      "id": "section-04",
+      "zh": {
+        "heading": "英文版本",
+        "body": "- 集中翻譯字典與參數替換；靜態文字、賽道資料、動態 HUD、操作指南、暫停及結算均支援 English / 繁體中文。\n- `npm test` 共 10 項通過，包含字典完整性、英文內容無中文殘留、參數一致性與既有物理／轉向測試。\n- `npm run test:english` 驗證語言切換、英文內容、完整計時賽、維修提示、暫停、結算、語言偏好重新載入及既有獎章／圈速資料保留。\n- 重新執行 `npm run test:browser`，確認中文大獎賽、計時與技巧模式均可完賽，操作與本機保存維持正常。\n- 英文桌面、手機及結算畫面截圖位於 `artifacts/*-en.png`。手機標題與選關卡片保留可讀性，沒有橫向溢出。\n- 正式建置通過。語言選擇不修改物理、AI 或方向輸入。"
+      },
+      "en": {
+        "heading": "English version",
+        "body": "- Central translation dictionary and parameter substitution cover static labels, circuits, live HUD, guide, pause and results in English / Traditional Chinese.\n- `npm test` passed 10 tests at this stage: dictionary coverage, no Chinese in English translations, parameter consistency and existing physics/steering tests.\n- `npm run test:english` verifies switching, English content, a complete time trial, pit guidance, pause, results, language restoration and preservation of medals/lap records.\n- `npm run test:browser` was rerun; Chinese Grand Prix, time trial and skill modes all completed, with controls and local saves intact.\n- English desktop, mobile and result captures are in `artifacts/*-en.png`. Mobile headings and circuit cards remain readable without horizontal overflow.\n- Production build passed. Language selection does not modify physics, AI or steering input."
+      }
+    },
+    {
+      "id": "section-05",
+      "zh": {
+        "heading": "六種背景音樂",
+        "body": "- 六首原創 Web Audio 合成編曲；分別渲染四小節測試片段，均有非零訊號且波形不同。\n- 預設 35% 音量下，測試片段峰值約 0.197–0.230，未出現數位削波；此為訊號驗證，並非主觀聽感評測。\n- Chrome 實際操作通過：試聽、六首切換、引擎音效獨立、音量偏好保存、重載不自動播放、暫停／繼續、靜音與失焦停止。\n- 桌面／手機介面截圖已檢視；手機無橫向溢出。未使用實體手機或音響設備驗證。\n- `npm test` 10 項通過，`npm run build` 成功；音樂測試可使用 `npm run test:music` 重跑。"
+      },
+      "en": {
+        "heading": "Six background music styles",
+        "body": "- Six original Web Audio arrangements each rendered a four-bar test excerpt; all produced nonzero and distinct signals.\n- At the default 35% volume, excerpt peaks were approximately 0.197–0.230 without digital clipping. This is signal verification, not a subjective listening assessment.\n- Chrome interactions passed: preview, six-track switching, independent engine sound, volume persistence, no reload autoplay, pause/resume, mute and blur stopping.\n- Desktop/mobile screenshots were inspected, with no horizontal mobile overflow. Physical phones and audio equipment were not tested.\n- `npm test` passed 10 tests and `npm run build` succeeded at this stage. Rerun music verification with `npm run test:music`."
+      }
+    },
+    {
+      "id": "bilingual-maintenance",
+      "zh": {
+        "heading": "雙語文件同步",
+        "body": "- 10 份中英文文件產生與一致性檢查通過，涵蓋 README、設計、開發狀態、驗證及貢獻指南。\n- `npm test` 共 12 項通過，包含缺少翻譯、細項數量、數值與指令不一致的攔截測試。\n- `npm run build` 通過；此次沒有修改遊戲物理、音樂或操作邏輯。\n- GitHub CI 加入 `npm run docs:check`；結構檢查之外，兩種語言的細節已人工逐項核對。"
+      },
+      "en": {
+        "heading": "Bilingual documentation synchronization",
+        "body": "- Generation and parity checks passed for 10 Chinese/English documents covering the README, design, development status, validation and contribution guide.\n- `npm test` passed 12 tests, including rejection of missing translations, unequal detail counts, differing numbers and mismatched commands.\n- `npm run build` passed; this change does not modify game physics, music or control logic.\n- GitHub CI now runs `npm run docs:check`; beyond structural checks, both languages were manually compared item by item."
+      }
+    }
+  ]
+}

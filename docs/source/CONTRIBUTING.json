@@ -1,0 +1,56 @@
+{
+  "paths": {
+    "zh": "CONTRIBUTING.md",
+    "en": "CONTRIBUTING.en.md"
+  },
+  "title": {
+    "zh": "貢獻與雙語維護",
+    "en": "Contributing and bilingual maintenance"
+  },
+  "sections": [
+    {
+      "id": "section-00",
+      "zh": {
+        "heading": "",
+        "body": "中英文版本必須具有相同功能與說明細項。英文文件不能只是中文版摘要；未實作項目、風險、操作與驗證限制也必須對等。"
+      },
+      "en": {
+        "heading": "",
+        "body": "Chinese and English must provide the same features and explanatory detail. English documentation must not be a summary of Chinese; unimplemented items, risks, controls and verification limits need equal coverage."
+      }
+    },
+    {
+      "id": "section-01",
+      "zh": {
+        "heading": "更新流程",
+        "body": "- 同一提交中更新中英文介面、功能說明、操作、版本限制及相關驗證紀錄。\n- 使用相同遊戲程式、設定鍵與存檔結構；不要以語言切換改變物理或玩法。\n- 在 `src/i18n.js` 維護英文翻譯；新增動態訊息、音樂或賽道時一起核對字典。\n- 編輯 `docs/source/*.json`，每個章節都同時維護 `zh` 與 `en`，保留共用章節 ID。\n- 不直接編輯產生的 Markdown。執行產生器後檢視兩種語言的差異與 GitHub 呈現。\n- 人工比對每項事實、條件、限制及語意；自動結構检查不能取代翻譯審查。"
+      },
+      "en": {
+        "heading": "Update workflow",
+        "body": "- Update both interfaces, feature descriptions, controls, release limitations and relevant validation records in the same commit.\n- Use shared game code, settings keys and save structures; language selection must not change physics or gameplay.\n- Maintain English translations in `src/i18n.js`; review dictionary coverage when adding dynamic messages, music or circuits.\n- Edit `docs/source/*.json`, maintaining both `zh` and `en` for every section while preserving shared section IDs.\n- Do not edit generated Markdown directly. Run the generator, then review both language diffs and their GitHub presentation.\n- Manually compare every fact, condition, limitation and meaning; structural checks cannot replace translation review."
+      }
+    },
+    {
+      "id": "section-02",
+      "zh": {
+        "heading": "必要指令",
+        "body": "```sh\nnpm run docs:generate\nnpm run docs:check\nnpm test\nnpm run build\n```\n\n修改遊戲介面或操作後，在開發伺服器運行時執行相關瀏覽器檢查：\n\n```sh\nnpm run test:browser\nnpm run test:english\nnpm run test:steering\nnpm run test:music\n```"
+      },
+      "en": {
+        "heading": "Required commands",
+        "body": "```sh\nnpm run docs:generate\nnpm run docs:check\nnpm test\nnpm run build\n```\n\nAfter changing game UI or controls, run the relevant browser checks with the development server running:\n\n```sh\nnpm run test:browser\nnpm run test:english\nnpm run test:steering\nnpm run test:music\n```"
+      }
+    },
+    {
+      "id": "section-03",
+      "zh": {
+        "heading": "自動檢查與邊界",
+        "body": "檢查會拒絕缺少語言、空白章節、清單／表格結構差異、指令區塊差異、數值差異、失效的本機文件連結與過期產生檔。GitHub CI 執行文件檢查及既有測試／建置。\n\n兩邊即使結構相同，也可能翻譯不準或同時缺少一項功能。維護者仍須依程式實作逐項審查；不要透過刪除檢查或縮短另一語言的內容來讓檢查通過。"
+      },
+      "en": {
+        "heading": "Automated checks and boundaries",
+        "body": "Checks reject missing languages, empty sections, list/table structure differences, mismatched command blocks, differing numeric values, broken local document links and stale generated files. GitHub CI runs documentation checks alongside existing tests/builds.\n\nMatching structure can still conceal inaccurate translations or a feature omitted in both languages. Maintainers must review each item against the implementation; do not remove checks or shorten the other language merely to obtain a passing result."
+      }
+    }
+  ]
+}

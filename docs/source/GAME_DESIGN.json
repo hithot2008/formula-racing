@@ -1,0 +1,111 @@
+{
+  "paths": {
+    "zh": "docs/GAME_DESIGN.md",
+    "en": "docs/GAME_DESIGN.en.md"
+  },
+  "title": {
+    "zh": "遊戲設計規格",
+    "en": "Game design specification"
+  },
+  "sections": [
+    {
+      "id": "section-00",
+      "zh": {
+        "heading": "",
+        "body": "本文件保留完整設計目標，不代表所有功能均已完成。目前已採用 Three.js + Vite 的本機瀏覽器版本；實作狀態與限制請見 [開發狀態](ROADMAP.md)。"
+      },
+      "en": {
+        "heading": "",
+        "body": "This document retains the full design goals; it does not claim every feature is complete. The current implementation uses Three.js + Vite in a local browser. See [development status](ROADMAP.en.md) for implemented features and limitations."
+      }
+    },
+    {
+      "id": "section-01",
+      "zh": {
+        "heading": "定位",
+        "body": "現代寫實的 3D 方程式賽車遊戲。核心體驗是煞車重量轉移、彎中抓地極限及出彎加速控制。電腦單人完整體驗優先，現階段平台為本機瀏覽器。"
+      },
+      "en": {
+        "heading": "Positioning",
+        "body": "A modern, realistic 3D formula racing game focused on braking weight transfer, cornering grip limits and controlled acceleration out of corners. A complete single-player computer experience comes first; the current platform is a local browser."
+      }
+    },
+    {
+      "id": "section-02",
+      "zh": {
+        "heading": "美術與聲音",
+        "body": "寫實車體、碳纖維與金屬、輪胎磨耗、動態陰影、雨滴與水霧。場景包括維修區、看台、緩衝区及日夜天候。支援座艙、車頂、追車及回放鏡頭。HUD 顯示速度、檔位、圈速差、輪胎、能源及旗號。引擎、換檔、輪胎、路緣與工程師聲音提供駕駛回饋；震動與速度模糊可調整。"
+      },
+      "en": {
+        "heading": "Art and sound",
+        "body": "Realistic bodywork, carbon fibre and metal, tyre wear, dynamic shadows, raindrops and spray. Environments include pit areas, grandstands, runoff and day/night weather. Camera goals include cockpit, roof, chase and replay views. The HUD shows speed, gear, lap delta, tyres, energy and flags. Engine, gearshift, tyre, kerb and engineer sounds provide feedback; shake and motion blur are adjustable."
+      }
+    },
+    {
+      "id": "section-03",
+      "zh": {
+        "heading": "物理核心",
+        "body": "採固定時間步長，物理與渲染更新分開；第一版使用可調校的簡化輪胎模型。\n\n| 系統 | 模擬內容 |\n| --- | --- |\n| 輪胎 | 胎溫、磨耗、濕度、縱向與橫向抓地分配 |\n| 車身 | 加減速與轉向重量轉移、重心及慣性 |\n| 空力 | 隨速度變化的下壓力與風阻 |\n| 懸吊 | 彈簧、阻尼、路緣及底盤接地 |\n| 動力 | 扭力曲線、檔位、引擎煞車 |\n| 制動 | 前後分配、鎖死與溫度 |\n| 車損 | 前翼、輪胎、懸吊損傷對操控的影響 |\n| 天候 | 濕地抓地、積水及乾燥路線 |\n\n不以車隊工程模擬精度作為初版承諾。以一致、可解釋的操控和可測量的物理行為驗收。"
+      },
+      "en": {
+        "heading": "Physics core",
+        "body": "Use a fixed timestep with physics separated from rendering; start with a tunable simplified tyre model.\n\n| System | Simulation content |\n| --- | --- |\n| Tyres | Temperature, wear, moisture and combined longitudinal/lateral grip |\n| Body | Acceleration, braking and cornering load transfer, centre of gravity and inertia |\n| Aerodynamics | Speed-dependent downforce and drag |\n| Suspension | Springs, damping, kerbs and floor contact |\n| Powertrain | Torque curves, gears and engine braking |\n| Brakes | Front/rear bias, locking and temperature |\n| Damage | Handling effects of front-wing, tyre and suspension damage |\n| Weather | Wet grip, standing water and a drying racing line |\n\nThe first release does not promise team-engineering simulation precision. Acceptance focuses on consistent, explainable handling and measurable physics behaviour."
+      }
+    },
+    {
+      "id": "section-04",
+      "zh": {
+        "heading": "難度",
+        "body": "| 項目 | 容易 | 進階 | 專業 |\n| --- | --- | --- | --- |\n| 輔助 | 自動換檔、防鎖死、循跡、穩定 | 可逐步關閉 | 預設關閉主要輔助 |\n| 賽車線 | 完整引導 | 可選彎道提示 | 預設關閉 |\n| AI | 慢節奏、較大避讓 | 積極竞争、偶有失誤 | 穩定圈速與戰術 |\n| 車損 | 輕微影響 | 部件影響操控 | 嚴重損傷可退賽 |\n| 規則 | 提醒為主 | 主要處罰 | 完整旗號及限制 |\n| 策略 | 自動管理 | 部分自行管理 | 完整管理 |\n| 補救 | 倒帶與重試 | 可限制倒帶 | 排名挑戰停用倒帶 |\n\n支援自訂輔助與 AI 強度；排行榜按輔助設定分組。AI 使用與玩家一致的車輛限制，不以隱藏加速調整難度。"
+      },
+      "en": {
+        "heading": "Difficulty",
+        "body": "| Item | Easy | Advanced | Pro |\n| --- | --- | --- | --- |\n| Assists | Automatic shifting, ABS, traction and stability | Progressively removable | Main assists off by default |\n| Racing line | Full guidance | Optional corner hints | Off by default |\n| AI | Slower pace, wider avoidance margins | Competitive, occasional mistakes | Consistent pace and tactics |\n| Damage | Minor effects | Component effects on handling | Severe damage may cause retirement |\n| Rules | Primarily warnings | Main penalties | Complete flags and restrictions |\n| Strategy | Automatic management | Partly manual | Fully manual |\n| Recovery | Rewind and retry | Optional rewind limits | No rewind in ranked challenges |\n\nSupport custom assists and AI strength, with leaderboards separated by assist settings. AI obeys the same vehicle limits as the player, without hidden acceleration boosts."
+      }
+    },
+    {
+      "id": "section-05",
+      "zh": {
+        "heading": "賽道與關卡",
+        "body": "| 賽道 | 特性 | 學習目標 |\n| --- | --- | --- |\n| 新秀測試場 | 寬廣短賽道 | 基本轉向與煞車 |\n| 海岸賽道 | 中速彎與直線 | 煞車點與出彎 |\n| 山丘賽道 | 高低差、盲彎 | 重量轉移 |\n| 森林高速賽道 | 高速連續彎 | 下壓力與節奏 |\n| 港灣街道賽 | 狹窄護牆 | 精準走線與超車 |\n| 沙漠大獎賽 | 高溫高磨耗 | 輪胎與進站策略 |\n| 雨中技術賽道 | 低抓地、變天 | 油門與換胎時機 |\n| 都會夜間決賽 | 複合彎、長距離 | 綜合駕駛與策略 |\n\n每條賽道包含技巧、計時及正式賽事三種主線挑戰，共 24 個。計時設銅銀金牌與個人幽靈車。"
+      },
+      "en": {
+        "heading": "Circuits and challenges",
+        "body": "| Circuit | Character | Learning objective |\n| --- | --- | --- |\n| Academy Circuit | Wide, short layout | Basic steering and braking |\n| Azure Coast | Medium-speed corners and straights | Braking points and exits |\n| Highland Ring | Elevation and blind corners | Weight transfer |\n| Emerald Park | Fast linked corners | Downforce and rhythm |\n| Port Velocity | Narrow walls | Precise lines and overtaking |\n| Dune Grand Prix | Heat and high wear | Tyres and pit strategy |\n| Silver Rain | Low grip and changing weather | Throttle control and tyre timing |\n| Neon Metropolis | Compound corners and long distance | Combined driving and strategy |\n\nEach circuit offers skill, timing and race challenges, for 24 in total. Timed challenges offer bronze, silver and gold targets plus a personal ghost."
+      }
+    },
+    {
+      "id": "section-06",
+      "zh": {
+        "heading": "模式與比賽流程",
+        "body": "模式：駕駛學院、快速比賽、計時賽、錦標賽、生涯。\n\n流程：選擇賽事 → 調校 → 練習 → 排位 → 正賽 → 成績與分析。\n\n完整目標包含起跑燈、搶跑、檢查點、計圈、名次、AI 跟車超車避碰、換胎維修、能源回收、超車輔助區、黃旗藍旗、賽道限制及時間處罰。暫停、重試、設定、自動存檔和賽後圈速分析為基本功能。生涯解鎖賽事、塗裝與調校選項。"
+      },
+      "en": {
+        "heading": "Modes and race flow",
+        "body": "Modes: driving academy, quick race, time trial, championship and career.\n\nFlow: event selection → setup → practice → qualifying → race → results and analysis.\n\nFull goals include starting lights, false starts, checkpoints, laps, positions, AI following/overtaking/avoidance, tyre changes and repairs, energy recovery, overtaking-assist zones, yellow/blue flags, track limits and time penalties. Pause, retry, settings, autosave and post-race lap analysis are basic features. Career unlocks events, liveries and setup choices."
+      }
+    },
+    {
+      "id": "section-07",
+      "zh": {
+        "heading": "技術架構與平台",
+        "body": "模組：車輛物理、輸入與輔助、AI、賽事規則、渲染場景、介面、存檔。賽道與難度以資料配置管理。\n\n完整目標建議桌面版；瀏覽器原型可驗證手感，但需控制畫面、車流及周邊支援。優先鍵盤及手把；方向盤與力回饋依平台評估。目前使用 Three.js + Vite；原生桌面包裝仍待評估。"
+      },
+      "en": {
+        "heading": "Architecture and platform",
+        "body": "Modules: vehicle physics, input/assists, AI, race rules, scene rendering, interface and saves. Circuits and difficulty use data-driven configuration.\n\nThe full goal favours desktop delivery; the browser prototype validates handling while controlling graphics, grid size and peripheral support. Keyboard and gamepad come first; steering wheels and force feedback depend on the platform. The implementation currently uses Three.js + Vite; native desktop packaging remains under evaluation."
+      }
+    },
+    {
+      "id": "section-08",
+      "zh": {
+        "heading": "待決策項目",
+        "body": "後續需確認最低硬體、效能目標與原生包裝方案。多人連線不納入首個里程碑。完整內容依原型驗證結果調整，文件中的功能均為規劃而非已完成項目。"
+      },
+      "en": {
+        "heading": "Remaining decisions",
+        "body": "Minimum hardware, performance targets and native packaging still need decisions. Multiplayer is outside the first milestone. Full content may change based on prototype results; the features described here are plans, not a statement of completion."
+      }
+    }
+  ]
+}

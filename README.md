@@ -1,12 +1,18 @@
+<!-- 此檔由雙語來源產生；請同時修改兩種語言。 Source: docs/source/README.json -->
+
 # FORMULA / 01
 
-[English documentation](README.en.md)
+[English](README.en.md)
+
+<!-- section: section-00 -->
 
 選單上方的 **Language** 可切換 English／繁體中文；語言偏好會保存，切換不影響既有圈速、獎章與幽靈車紀錄。
 
-可在本機瀏覽器遊玩的 3D 方程式賽車遊戲。繁體中文介面，原創賽道與車輛，使用 Three.js 渲染。
+可在本機瀏覽器遊玩的 3D 方程式賽車遊戲。中英文介面，原創賽道與車輛，使用 Three.js 渲染。
 
 ![賽道選單](artifacts/menu.png)
+
+<!-- section: section-01 -->
 
 ## 啟動
 
@@ -18,6 +24,8 @@ npm run dev
 ```
 
 開啟終端顯示的本機網址（預設 http://127.0.0.1:5173）。遊戲資源隨專案打包，遊玩時不需要 CDN、帳號或外部素材服務。第一次安裝依賴需要網路。
+
+<!-- section: section-02 -->
 
 ## 已實作
 
@@ -32,6 +40,8 @@ npm run dev
 - 維修格換胎與修復、回正罰停、暫停、重新起跑及本機存檔。
 - 鍵盤、螢幕觸控按鈕與標準 Gamepad API 輸入。
 
+<!-- section: section-03 -->
+
 ## 操作
 
 | 操作 | 按鍵 |
@@ -42,11 +52,14 @@ npm run dev
 | 切換追車、座艙、車頂鏡頭 | C |
 | 暫停 / 繼續 | Esc |
 | 回正，原地罰停 5 秒並取消該圈有效性 | R |
+| 背景音樂開關 | M |
 | 維修 | 在起終點後右側綠色格停穩，按 P |
 
 標準手把：左搖桿轉向、RT 油門、LT 煞車、A 能源加速。手把需瀏覽器正確回報標準 mapping；尚未使用實體手把驗證。
 
 紀錄保存在目前瀏覽器的 localStorage。不同瀏覽器或不同來源網址的存檔獨立，清除瀏覽資料會移除紀錄。幽靈車不碰撞其他車輛。
+
+<!-- section: section-04 -->
 
 ## 驗證與建置
 
@@ -60,11 +73,17 @@ npm run preview
 
 ```sh
 npm run dev -- --port 5173 --strictPort
-# 另一個終端
+# In another terminal
 npm run test:browser
+npm run test:english
+npm run test:steering
+npm run test:music
+npm run docs:check
 ```
 
 瀏覽器驗證包含實際按鍵操作及完整比賽流程。加速跑完整比賽的驗證入口只存在於開發建置，正式版本不提供。
+
+<!-- section: section-05 -->
 
 ## 版本範圍
 
@@ -74,6 +93,7 @@ npm run test:browser
 
 詳細資料見 [設計規格](docs/GAME_DESIGN.md)、[開發狀態](docs/ROADMAP.md) 與 [驗證紀錄](docs/VALIDATION.md)。
 
+<!-- section: section-06 -->
 
 ## 六種背景音樂
 
@@ -91,3 +111,13 @@ npm run test:browser
 六首均由本專案的 Web Audio 合成器即時編曲，包含鼓組、低音、旋律與分段變化；不依賴第三方歌曲、取樣檔或串流服務。首次播放需點擊「試聽」或開始比賽；重新載入頁面不會自行播放。暫停、完賽與視窗失焦會停止音樂，繼續比賽時恢復。
 
 執行 `npm run test:music` 可驗證六首音訊渲染、播放生命週期及偏好保存。
+
+<!-- section: section-07 -->
+
+## 文件與版本同步
+
+中英文使用同一套遊戲程式與存檔格式。每次功能、操作、限制或驗證結果改動，都要在同一提交中更新兩種語言的介面與文件。
+
+文件成對涵蓋 README、設計規格、開發狀態、驗證紀錄與貢獻指南。請閱讀 [維護規則](CONTRIBUTING.md)；編輯 `docs/source/*.json` 中同一章節的 `zh` 與 `en`，執行 `npm run docs:generate` 產生 Markdown，再執行 `npm run docs:check`。
+
+GitHub CI 會檢查雙語欄位、章節、清單與表格結構、指令區塊、數值及輸出檔案同步。自動檢查無法證明翻譯語意完全相同，仍須人工逐項核對。

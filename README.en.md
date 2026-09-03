@@ -1,19 +1,46 @@
+<!-- Generated from paired bilingual sources; update both languages together. Source: docs/source/README.json -->
+
 # FORMULA / 01
 
-A playable 3D formula racing game with eight original circuits, three difficulty levels and English / Traditional Chinese interfaces.
+[繁體中文](README.md)
 
-## Play locally
+<!-- section: section-00 -->
 
-Requires Node.js 22+ and a WebGL-capable browser.
+The **Language** menu switches between English and Traditional Chinese. Your preference persists without changing existing lap records, medals or ghost laps.
+
+A locally playable 3D formula racing game with Chinese and English interfaces, original circuits and cars, rendered with Three.js.
+
+![Circuit selection](artifacts/menu-en.png)
+
+<!-- section: section-01 -->
+
+## Getting started
+
+Requires Node.js 22+ and a modern WebGL-capable browser. On Mac, double-click **啟動遊戲.command**, or run these commands in the project directory:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open the local address printed by Vite, usually http://127.0.0.1:5173. On macOS, you can also double-click `啟動遊戲.command`.
+Open the local URL printed by the terminal (default http://127.0.0.1:5173). Game assets are bundled with the project; playing requires no CDN, account or external asset service. The initial dependency installation requires internet access.
 
-Choose **English** in the **Language** menu at the top. Your choice persists after reloading. Changing language preserves your medals, lap records and ghost laps. Records are stored in this browser; clearing browser data removes them.
+<!-- section: section-02 -->
+
+## Implemented features
+
+- 8 original circuits with distinct routes and environments, including dry, wet, sunset and night conditions.
+- Easy, Advanced and Pro difficulty: different driving assistance, AI target speeds and collision damage multipliers.
+- Grand Prix: race 5 AI opponents over 3 laps, with a start countdown, live standings and finishing medals.
+- Time trial: 2 laps with best valid lap times, personal records and a personal best ghost.
+- Skill challenge: 1 lap inside the track limits, without resetting and with less than 5% damage.
+- Each circuit offers 3 challenges, giving 24 combinations; records are further separated by difficulty.
+- Fixed 120 Hz physics steps, grip limits, steering inertia, braking, wet-road differences, speed-dependent aero effects, tyre wear, energy boost and collisions.
+- Three cameras, synthesized engine sound, minimap, live car status and lap timing.
+- Pit-box tyre changes and repairs, reset stops, pause, restart and local saves.
+- Keyboard, on-screen touch buttons and standard Gamepad API input.
+
+<!-- section: section-03 -->
 
 ## Controls
 
@@ -22,45 +49,75 @@ Choose **English** in the **Language** menu at the top. Your choice persists aft
 | Throttle / brake | W / S or ↑ / ↓ |
 | Steer left / right | A / D or ← / → |
 | Energy boost | Space |
-| Change camera | C |
+| Switch chase, cockpit and roof cameras | C |
 | Pause / resume | Esc |
-| Reset car, with a five-second stop | R |
+| Reset car, stop for 5 seconds and invalidate the current lap | R |
+| Toggle background music | M |
 | Pit service | Stop in the green box on the right after the start line, then press P |
 
-Standard gamepads use the left stick for steering, RT for throttle, LT for braking and A for boost. Physical gamepad compatibility has not been verified.
+Standard gamepad: left stick to steer, RT throttle, LT brake and A energy boost. The browser must report a standard mapping; physical gamepads have not been tested.
 
-## Modes
+Records are stored in this browser's localStorage. Different browsers and URL origins have separate saves; clearing browser data removes them. Ghost cars do not collide with other cars.
 
-- **Grand Prix:** three laps against five AI drivers; medals depend on finishing position.
-- **Time trial:** two laps, valid lap records and a personal best ghost. Off-track driving or resetting invalidates the lap.
-- **Skill challenge:** one lap within the white lines, without resetting and with less than 5% damage.
+<!-- section: section-04 -->
 
-Each circuit offers all three modes, giving 24 challenge combinations. Records are separated by circuit, mode and difficulty. Easy, Advanced and Pro adjust driving assistance, AI pace and damage.
-
-## Development checks
+## Validation and builds
 
 ```sh
 npm test
 npm run build
-# With the local development server running on port 5173:
-npm run test:english
-npm run test:steering
-npm run test:browser
+npm run preview
 ```
 
-Browser tests default to Google Chrome on macOS. Set `CHROME_PATH` to use a different Chrome executable. The accelerated race verification interface is available only in development builds.
+After starting the development server in another terminal, run `npm run test:browser`. Tests default to Google Chrome on macOS; use `CHROME_PATH` to point to a Chrome executable on other platforms.
 
-## Current scope
+```sh
+npm run dev -- --port 5173 --strictPort
+# In another terminal
+npm run test:browser
+npm run test:english
+npm run test:steering
+npm run test:music
+npm run docs:check
+```
 
-This is a playable first release using procedural 3D assets and simplified vehicle physics. Full career progression, qualifying, dynamic weather, detailed suspension and tyre-temperature grip modelling, manual transmission, full pit-lane rules and steering-wheel force feedback are not implemented. It is an original game, not an official F1 product or engineering-grade simulator.
+Browser validation includes actual keyboard input and complete race flows. The accelerated race verification interface is available only in development builds, never in production builds.
 
-[繁體中文說明](README.md)
+<!-- section: section-05 -->
 
+## Release scope
 
-## Background music
+This is the **v0.1 playable first release**. It uses procedural 3D models and simplified planar vehicle physics, not an engineering-grade F1 simulator. Visuals, suspension and full dynamic weight transfer need further development; gears are automatically displayed and mapped to sound, without a manual transmission model. Tyre temperature is calculated internally but does not yet affect grip.
 
-Choose from six original synthesized arrangements: **Apex Energy** (Electro House, 128 BPM), **Neon Drive** (Synthwave, 110), **Redline Rush** (Drum & Bass, 174), **Tunnel Pulse** (Techno, 138), **Horizon Sprint** (Trance, 140), and **Grid Breaks** (Breakbeat, 132).
+Full career/championship modes, qualifying, formal pit lanes and AI pit strategy, complete flag penalties, dynamic weather, official brand licensing, high-fidelity art and steering-wheel force feedback are not implemented. All 8 circuits are directly selectable; the 24 challenges are circuit/mode combinations, not 24 independently scripted scenarios.
 
-Use the Background music section to preview a track and set its volume independently of engine sound. Preferences persist. During a race, press **M** or use the Music button to toggle playback. Music starts after a preview/start gesture and stops on pause, finish or window blur. Resume the race to continue playback.
+See the [design specification](docs/GAME_DESIGN.en.md), [development status](docs/ROADMAP.en.md) and [validation record](docs/VALIDATION.en.md) for details.
 
-Audio is synthesized locally with Web Audio: drums, bass, melodies and arrangement variations. No external songs, samples or streaming services are used. Run `npm run test:music` with the development server running to verify audio rendering and playback controls.
+<!-- section: section-06 -->
+
+## Six background music styles
+
+Choose a track, preview it and adjust its independent volume in the Background music section. Track, volume and enabled state persist. During a race, click Music M or press M to toggle playback. Music and engine sound have separate controls.
+
+| Track | Style | BPM |
+| --- | --- | --- |
+| Apex Energy | Electro House | 128 |
+| Neon Drive | Synthwave | 110 |
+| Redline Rush | Drum & Bass | 174 |
+| Tunnel Pulse | Techno | 138 |
+| Horizon Sprint | Trance | 140 |
+| Grid Breaks | Breakbeat | 132 |
+
+All six tracks are arranged live by the project's Web Audio synthesizer, including drums, bass, melodies and section variations. No third-party songs, samples or streaming services are required. Initial playback requires Preview or starting a race; reloading does not autoplay. Pausing, finishing or window blur stops the music; resuming the race restores it.
+
+Run `npm run test:music` to verify all six audio renders, playback lifecycle and preference persistence.
+
+<!-- section: section-07 -->
+
+## Documentation and version parity
+
+Chinese and English use the same game code and save format. Every change to features, controls, limitations or validation results must update both interfaces and documentation in the same commit.
+
+Paired documents cover the README, design specification, development status, validation record and contribution guide. Read the [maintenance rules](CONTRIBUTING.en.md); edit `zh` and `en` for the same section in `docs/source/*.json`, run `npm run docs:generate` to produce Markdown, then run `npm run docs:check`.
+
+GitHub CI checks bilingual fields, sections, list and table structure, command blocks, numeric values and generated-file synchronization. Automation cannot prove semantic equivalence; each item still requires human review.

@@ -12,7 +12,9 @@
     "format": "prettier --write src tests index.html vite.config.js",
     "test:steering": "node tests/steering-browser.mjs",
     "test:english": "node tests/english-browser.mjs",
-    "test:music": "node tests/music-browser.mjs"
+    "test:music": "node tests/music-browser.mjs",
+    "docs:generate": "node scripts/docs.mjs",
+    "docs:check": "node scripts/docs.mjs --check"
   },
   "dependencies": {
     "three": "0.180.0"
