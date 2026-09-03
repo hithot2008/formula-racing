@@ -739,7 +739,15 @@ footer button {
     grid-template-columns: repeat(2, 1fr);
   }
   .track-card {
-    min-height: 120px;
+    min-height: 132px;
+  }
+  .track-card svg {
+    width: 64px;
+    height: 48px;
+    top: 8px;
+  }
+  .track-card h3 {
+    margin-top: 34px;
   }
   .section-heading span {
     display: none;
