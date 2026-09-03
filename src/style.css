@@ -906,3 +906,58 @@ html[lang='en'] .modal dl {
     display: block;
   }
 }
+
+.music-settings {
+  border-top: 1px solid #ffffff20;
+  padding-top: 12px;
+  margin-bottom: 15px;
+}
+.music-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.music-heading button {
+  background: #34433e;
+  border: 1px solid #819278;
+  color: #d5ef77;
+  font-size: 10px;
+  padding: 6px 12px;
+}
+.music-settings select {
+  font-size: 11px;
+  padding: 10px;
+}
+.music-volume {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 10px;
+}
+.music-volume input {
+  min-width: 0;
+  flex: 1;
+  accent-color: #d5ef77;
+}
+.music-volume output {
+  width: 32px;
+  text-align: right;
+}
+#musicStatus {
+  font-size: 10px;
+  color: #ffc18c;
+  margin-top: 5px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

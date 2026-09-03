@@ -1,3 +1,4 @@
+import { BackgroundMusic, MUSIC_TRACKS } from './music.js';
 import { t, getLanguage, setLanguage, translatePage } from './i18n.js';
 import './style.css';
 import { TRACKS, makeTrack, clamp } from './tracks.js';
@@ -46,6 +47,8 @@ let devDriver = false,
   ghostIndex = 0;
 const keys = new Set(),
   audio = new EngineAudio();
+const music = new BackgroundMusic();
+let musicPreview = false;
 function recordKey() {
   return `${track.id}:${$('difficulty').value}:${$('mode').value}`;
 }
@@ -87,6 +90,9 @@ function updateSetup() {
     sound: $('sound').checked,
     track: selected,
     language: getLanguage(),
+    musicTrack: music.trackId,
+    musicVolume: music.volume,
+    musicEnabled: music.enabled,
   };
   persist();
 }
@@ -109,6 +115,11 @@ function notify(text, seconds = 3) {
   $('message').textContent = text;
 }
 function startRace() {
+  musicPreview = false;
+  music.unlock().then((ok) => {
+    if (!ok) musicFailure();
+  });
+  refreshMusicLabels();
   difficulty = $('difficulty').value;
   mode = $('mode').value;
   totalLaps = mode === 'race' ? 3 : mode === 'time' ? 2 : 1;
@@ -165,6 +176,7 @@ function finish() {
   state = 'results';
   keys.clear();
   audio.update(0, 0, false);
+  music.setPlaying(false);
   const p = cars[0],
     rank = sorted().findIndex((r) => r.i === 0) + 1;
   let medal =
@@ -212,6 +224,9 @@ function finish() {
   show('overlay', true);
 }
 function backMenu() {
+  musicPreview = false;
+  music.setPlaying(false);
+  refreshMusicLabels();
   state = 'menu';
   keys.clear();
   show('hud', false);
@@ -226,6 +241,7 @@ function pause() {
   state = 'paused';
   keys.clear();
   audio.update(0, 0, false);
+  music.setPlaying(false);
   $('overlayEyebrow').textContent = 'RACE CONTROL';
   $('overlayTitle').textContent = t('暫停，調整呼吸。');
   $('overlayBody').innerHTML = t(
@@ -429,6 +445,66 @@ function drawMap() {
     ctx.fill();
   });
 }
+function musicFailure() {
+  $('musicStatus').textContent = t('無法播放音樂，請再按一次試聽。');
+}
+function refreshMusicLabels() {
+  $('musicPreview').dataset.i18n = musicPreview ? '停止試聽' : '試聽';
+  $('musicPreview').textContent = t($('musicPreview').dataset.i18n);
+  $('musicPreview').setAttribute('aria-pressed', String(musicPreview));
+  $('musicMute').dataset.i18n = music.enabled ? '音樂 M' : '音樂已關閉 M';
+  $('musicMute').textContent = t($('musicMute').dataset.i18n);
+  $('musicMute').setAttribute('aria-pressed', String(music.enabled));
+}
+function renderMusic() {
+  $('musicTrack').innerHTML = MUSIC_TRACKS.map(
+    (track) =>
+      `<option value="${track.id}">${t(track.name)} · ${track.genre} / ${track.bpm} BPM</option>`,
+  ).join('');
+  $('musicTrack').value = music.trackId;
+  refreshMusicLabels();
+}
+function toggleMusic() {
+  music.enabled = !music.enabled;
+  $('musicEnabled').checked = music.enabled;
+  if (!music.enabled) {
+    musicPreview = false;
+    music.setPlaying(false);
+  } else
+    music.unlock().then((ok) => {
+      if (!ok) musicFailure();
+    });
+  refreshMusicLabels();
+  updateSetup();
+}
+$('musicEnabled').onchange = toggleMusic;
+$('musicMute').onclick = toggleMusic;
+$('musicTrack').onchange = () => {
+  music.select($('musicTrack').value);
+  updateSetup();
+};
+$('musicVolume').oninput = () => {
+  music.setVolume(Number($('musicVolume').value) / 100);
+  $('musicVolumeValue').textContent = `${Math.round(music.volume * 100)}%`;
+  updateSetup();
+};
+$('musicPreview').onclick = async () => {
+  if (musicPreview) {
+    musicPreview = false;
+    music.setPlaying(false);
+    refreshMusicLabels();
+    return;
+  }
+  $('musicStatus').textContent = '';
+  music.enabled = true;
+  $('musicEnabled').checked = true;
+  if (await music.unlock()) {
+    musicPreview = state === 'menu' && !document.hidden;
+    music.setPlaying(musicPreview);
+  } else musicFailure();
+  refreshMusicLabels();
+  updateSetup();
+};
 function renderTracks() {
   $('tracks').innerHTML = tracks
     .map(
@@ -451,6 +527,7 @@ $('language').onchange = () => {
   setLanguage($('language').value);
   translatePage();
   renderTracks();
+  renderMusic();
   updateSetup();
 };
 $('start').onclick = startRace;
@@ -488,6 +565,7 @@ window.addEventListener('keydown', (e) => {
     return;
   }
   if (state === 'racing') {
+    if (e.code === 'KeyM') toggleMusic();
     if (e.code === 'KeyC') view.cameraMode = (view.cameraMode + 1) % 3;
     if (e.code === 'KeyR' && !cars[0].resetWait && !cars[0].pit) {
       resetCar(cars[0], track);
@@ -500,11 +578,17 @@ window.addEventListener('keydown', (e) => {
 });
 window.addEventListener('keyup', (e) => keys.delete(e.code));
 window.addEventListener('blur', () => {
+  musicPreview = false;
+  music.setPlaying(false);
+  refreshMusicLabels();
   keys.clear();
   pause();
 });
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
+    musicPreview = false;
+    music.setPlaying(false);
+    refreshMusicLabels();
     keys.clear();
     pause();
   }
@@ -524,6 +608,13 @@ try {
   if (['race', 'time', 'academy'].includes(save.settings.mode))
     $('mode').value = save.settings.mode;
   $('sound').checked = save.settings.sound !== false;
+  music.select(save.settings.musicTrack || 'apex');
+  music.setVolume(Number.isFinite(save.settings.musicVolume) ? save.settings.musicVolume : 0.35);
+  music.enabled = save.settings.musicEnabled !== false;
+  $('musicEnabled').checked = music.enabled;
+  $('musicVolume').value = Math.round(music.volume * 100);
+  $('musicVolumeValue').textContent = `${Math.round(music.volume * 100)}%`;
+  renderMusic();
   $('rpm').innerHTML = '<i></i>'.repeat(12);
   selectTrack(clamp(Number(save.settings.track) || 0, 0, 7));
   let last = performance.now();
@@ -539,6 +630,10 @@ try {
     } else accumulator = 0;
     view.update(cars, dt, state === 'menu');
     audio.update(cars[0].speed, cars[0].throttle, state === 'racing');
+    music.setPlaying(
+      !document.hidden &&
+        (state === 'racing' || state === 'countdown' || (state === 'menu' && musicPreview)),
+    );
     if (now - lastHud > 100 && state !== 'menu') {
       updateHud();
       lastHud = now;
@@ -557,6 +652,7 @@ try {
       totalLaps,
       cars: cars.map((c) => ({ ...c })),
       renderer: view.renderer.info.render,
+      music: music.snapshot(),
     }),
   };
   if (import.meta.env.DEV)

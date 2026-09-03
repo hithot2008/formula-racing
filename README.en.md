@@ -55,3 +55,12 @@ Browser tests default to Google Chrome on macOS. Set `CHROME_PATH` to use a diff
 This is a playable first release using procedural 3D assets and simplified vehicle physics. Full career progression, qualifying, dynamic weather, detailed suspension and tyre-temperature grip modelling, manual transmission, full pit-lane rules and steering-wheel force feedback are not implemented. It is an original game, not an official F1 product or engineering-grade simulator.
 
 [繁體中文說明](README.md)
+
+
+## Background music
+
+Choose from six original synthesized arrangements: **Apex Energy** (Electro House, 128 BPM), **Neon Drive** (Synthwave, 110), **Redline Rush** (Drum & Bass, 174), **Tunnel Pulse** (Techno, 138), **Horizon Sprint** (Trance, 140), and **Grid Breaks** (Breakbeat, 132).
+
+Use the Background music section to preview a track and set its volume independently of engine sound. Preferences persist. During a race, press **M** or use the Music button to toggle playback. Music starts after a preview/start gesture and stops on pause, finish or window blur. Resume the race to continue playback.
+
+Audio is synthesized locally with Web Audio: drums, bass, melodies and arrangement variations. No external songs, samples or streaming services are used. Run `npm run test:music` with the development server running to verify audio rendering and playback controls.

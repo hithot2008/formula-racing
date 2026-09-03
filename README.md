@@ -73,3 +73,21 @@ npm run test:browser
 完整生涯／錦標賽、排位、正式進站車道與 AI 進站策略、完整旗號處罰、動態天候、官方品牌授權、高擬真美術與方向盤力回饋尚未實作。8 個賽道均可直接選擇；24 個挑戰是賽道與模式組合，並非 24 套獨立腳本。
 
 詳細資料見 [設計規格](docs/GAME_DESIGN.md)、[開發狀態](docs/ROADMAP.md) 與 [驗證紀錄](docs/VALIDATION.md)。
+
+
+## 六種背景音樂
+
+在選單的「背景音樂」區塊選曲、試聽並調整獨立音量；曲目、音量與開關會保存。比賽中可點擊「音樂 M」或按 M 切換開關。音樂與引擎音效各自控制。
+
+| 曲目 | 風格 | BPM |
+| --- | --- | --- |
+| 極速電音 / Apex Energy | Electro House | 128 |
+| 霓虹疾馳 / Neon Drive | Synthwave | 110 |
+| 紅線鼓打 / Redline Rush | Drum & Bass | 174 |
+| 隧道脈衝 / Tunnel Pulse | Techno | 138 |
+| 地平線衝刺 / Horizon Sprint | Trance | 140 |
+| 起跑碎拍 / Grid Breaks | Breakbeat | 132 |
+
+六首均由本專案的 Web Audio 合成器即時編曲，包含鼓組、低音、旋律與分段變化；不依賴第三方歌曲、取樣檔或串流服務。首次播放需點擊「試聽」或開始比賽；重新載入頁面不會自行播放。暫停、完賽與視窗失焦會停止音樂，繼續比賽時恢復。
+
+執行 `npm run test:music` 可驗證六首音訊渲染、播放生命週期及偏好保存。

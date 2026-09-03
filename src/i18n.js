@@ -1,5 +1,20 @@
 // Source keys are Traditional Chinese; English templates are authored locally.
 export const english = {
+  背景音樂: 'Background music',
+  試聽: 'Preview',
+  停止試聽: 'Stop preview',
+  音樂曲風: 'Music style',
+  音樂音量: 'Music volume',
+  '音樂 M': 'Music M',
+  '音樂已關閉 M': 'Music off M',
+  '無法播放音樂，請再按一次試聽。': 'Unable to play music. Press Preview to try again.',
+  極速電音: 'Apex Energy',
+  霓虹疾馳: 'Neon Drive',
+  紅線鼓打: 'Redline Rush',
+  隧道脈衝: 'Tunnel Pulse',
+  地平線衝刺: 'Horizon Sprint',
+  起跑碎拍: 'Grid Breaks',
+
   方程式賽車: 'Formula Racing',
   '3D 賽車場景': '3D racing scene',
   '每一個彎，': 'Every corner.',

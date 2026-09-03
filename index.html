@@ -71,6 +71,25 @@
               <span data-i18n="引擎音效">引擎音效</span></label
             ><span id="record"></span>
           </div>
+          <section class="music-settings" aria-label="Background music">
+            <div class="music-heading">
+              <label
+                ><input id="musicEnabled" type="checkbox" checked />
+                <span data-i18n="背景音樂">背景音樂</span></label
+              ><button id="musicPreview" type="button" data-i18n="試聽">試聽</button>
+            </div>
+            <label class="sr-only" for="musicTrack" data-i18n="音樂曲風">音樂曲風</label
+            ><select id="musicTrack"></select>
+            <label class="music-volume"
+              ><span data-i18n="音樂音量">音樂音量</span
+              ><input id="musicVolume" type="range" min="0" max="100" value="35" /><output
+                id="musicVolumeValue"
+                for="musicVolume"
+                >35%</output
+              ></label
+            >
+            <div id="musicStatus" role="status"></div>
+          </section>
           <button id="start" class="primary">
             <span data-i18n="前往起跑線">前往起跑線</span> <span>↗</span>
           </button>
@@ -103,7 +122,8 @@
       <div class="race-top">
         <div class="race-brand">F<span>／</span>01 <small id="raceTrack"></small></div>
         <div class="race-controls">
-          <button id="cameraBtn" title="切換鏡頭 C" data-i18n-title="切換鏡頭 C">
+          <button id="musicMute" data-i18n="音樂 M">音樂 M</button
+          ><button id="cameraBtn" title="切換鏡頭 C" data-i18n-title="切換鏡頭 C">
             <span data-i18n="鏡頭 C">鏡頭 C</span></button
           ><button id="pauseBtn" title="暫停 Esc" data-i18n-title="暫停 Esc">
             <span data-i18n="暫停 Ⅱ">暫停 Ⅱ</span>
