@@ -1047,3 +1047,11 @@ html[lang='en'] .modal dl {
     display: none;
   }
 }
+
+.audio-row {
+  flex-wrap: wrap;
+  gap: 10px 14px;
+}
+.audio-row #record {
+  margin-left: auto;
+}

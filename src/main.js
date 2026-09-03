@@ -1,3 +1,4 @@
+import { MenuAudio } from './menu-audio.js';
 import { installMenuFeedback } from './menu-feedback.js';
 import { BackgroundMusic, MUSIC_TRACKS } from './music.js';
 import { t, getLanguage, setLanguage, translatePage } from './i18n.js';
@@ -49,6 +50,7 @@ let devDriver = false,
 const keys = new Set(),
   audio = new EngineAudio();
 const music = new BackgroundMusic();
+const menuAudio = new MenuAudio();
 let musicPreview = false;
 function recordKey() {
   return `${track.id}:${$('difficulty').value}:${$('mode').value}`;
@@ -94,6 +96,7 @@ function updateSetup() {
     musicTrack: music.trackId,
     musicVolume: music.volume,
     musicEnabled: music.enabled,
+    menuSound: menuAudio.enabled,
   };
   persist();
 }
@@ -531,7 +534,12 @@ $('language').onchange = () => {
   renderMusic();
   updateSetup();
 };
-installMenuFeedback($('menu'));
+installMenuFeedback($('menu'), (kind) => menuAudio.play(kind));
+$('menuSound').onchange = () => {
+  menuAudio.enabled = $('menuSound').checked;
+  if (!menuAudio.enabled) menuAudio.stop();
+  updateSetup();
+};
 $('start').onclick = startRace;
 $('difficulty').onchange = updateSetup;
 $('mode').onchange = updateSetup;
@@ -580,6 +588,7 @@ window.addEventListener('keydown', (e) => {
 });
 window.addEventListener('keyup', (e) => keys.delete(e.code));
 window.addEventListener('blur', () => {
+  menuAudio.stop();
   musicPreview = false;
   music.setPlaying(false);
   refreshMusicLabels();
@@ -588,6 +597,7 @@ window.addEventListener('blur', () => {
 });
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
+    menuAudio.stop();
     musicPreview = false;
     music.setPlaying(false);
     refreshMusicLabels();
@@ -610,6 +620,8 @@ try {
   if (['race', 'time', 'academy'].includes(save.settings.mode))
     $('mode').value = save.settings.mode;
   $('sound').checked = save.settings.sound !== false;
+  menuAudio.enabled = save.settings.menuSound !== false;
+  $('menuSound').checked = menuAudio.enabled;
   music.select(save.settings.musicTrack || 'apex');
   music.setVolume(Number.isFinite(save.settings.musicVolume) ? save.settings.musicVolume : 0.35);
   music.enabled = save.settings.musicEnabled !== false;
@@ -655,6 +667,7 @@ try {
       cars: cars.map((c) => ({ ...c })),
       renderer: view.renderer.info.render,
       music: music.snapshot(),
+      menuAudio: menuAudio.snapshot(),
     }),
   };
   if (import.meta.env.DEV)

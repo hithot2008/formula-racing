@@ -95,6 +95,17 @@
         "heading": "Menu feedback, renders and English launcher",
         "body": "- Chrome verified Chinese/English pointer and keyboard selection, setting-change feedback and reduced motion.\n- Regenerated 14 Chinese/English desktop, mobile, selection, music, race and result images, checking rendering inputs and file hashes.\n- The English-named `Start-Game.command` retains executable permissions and passed `zsh -n Start-Game.command`; both documentation languages use the new name.\n- 12 tests, bilingual documentation checks and the production build passed."
       }
+    },
+    {
+      "id": "menu-sound",
+      "zh": {
+        "heading": "選單音效",
+        "body": "- 3 種原創短音效離線渲染產生不同波形，峰值低於削波上限；這是訊號測試，並非主觀聽感評測。\n- Chrome 驗證滑鼠、鍵盤、設定切換、起跑音效、獨立靜音、偏好保存、重載不自動播放、節點清理及英文標籤。\n- `npm run test:menu-audio` 通過；12 項既有測試與正式建置通過。\n- 依維護流程重新產生中英文展示圖；音效不修改車輛物理或方向控制。"
+      },
+      "en": {
+        "heading": "Menu sounds",
+        "body": "- 3 original short cues produced distinct offline-rendered waveforms with peaks below clipping; this is signal testing, not a subjective listening assessment.\n- Chrome verified pointer and keyboard input, setting changes, the start cue, independent mute, saved preferences, no reload autoplay, node cleanup and the English label.\n- `npm run test:menu-audio` passed, along with 12 existing tests and the production build.\n- Chinese/English presentation images were regenerated through the maintenance workflow; sounds do not change vehicle physics or steering."
+      }
     }
   ]
 }

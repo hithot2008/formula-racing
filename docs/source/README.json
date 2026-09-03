@@ -106,6 +106,17 @@
         "heading": "Menu interaction feedback",
         "body": "Circuit cards provide hover lift, selection glow and click ripples. Changes to difficulty, mode, language and music also receive confirmation feedback. Keyboard selection uses the same feedback. With system reduced motion enabled, movement and ripples are disabled while static selection feedback remains.\n\nGitHub images are refreshed through `npm run render:images`; `npm run render:check` verifies that screenshots match the current rendering inputs."
       }
+    },
+    {
+      "id": "menu-audio",
+      "zh": {
+        "heading": "選單音效",
+        "body": "選取按鈕、切換設定與開始比賽各有不同的短促原創合成音效，支援滑鼠、鍵盤與觸控。選單中的「選單音效」可獨立開關，偏好會保存，不受引擎音效或背景音樂開關影響。\n\n首次播放需要使用者操作；不在滑過時自動播放。快速連續選取不會堆疊音量，切到背景或關閉音效會停止聲音。系統減少動態效果只影響動畫，音效仍由獨立開關控制。\n\n使用 `npm run test:menu-audio` 驗證音訊渲染、操作觸發、靜音、偏好保存及音訊節點清理。"
+      },
+      "en": {
+        "heading": "Menu sounds",
+        "body": "Button selection, setting changes and race starts use distinct short original synthesized cues for mouse, keyboard and touch interactions. The Menu sounds checkbox independently controls these cues and saves the preference; engine sound and background music have separate switches.\n\nPlayback requires a user interaction and does not trigger merely on hover. Rapid selections cannot stack cue volume, and backgrounding or disabling sounds stops playback. Reduced motion affects animation only; menu audio remains controlled by its own switch.\n\nUse `npm run test:menu-audio` to verify audio rendering, interaction triggers, mute, preference persistence and audio-node cleanup."
+      }
     }
   ]
 }

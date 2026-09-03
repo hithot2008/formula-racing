@@ -129,3 +129,13 @@ GitHub CI checks bilingual fields, sections, list and table structure, command b
 Circuit cards provide hover lift, selection glow and click ripples. Changes to difficulty, mode, language and music also receive confirmation feedback. Keyboard selection uses the same feedback. With system reduced motion enabled, movement and ripples are disabled while static selection feedback remains.
 
 GitHub images are refreshed through `npm run render:images`; `npm run render:check` verifies that screenshots match the current rendering inputs.
+
+<!-- section: menu-audio -->
+
+## Menu sounds
+
+Button selection, setting changes and race starts use distinct short original synthesized cues for mouse, keyboard and touch interactions. The Menu sounds checkbox independently controls these cues and saves the preference; engine sound and background music have separate switches.
+
+Playback requires a user interaction and does not trigger merely on hover. Rapid selections cannot stack cue volume, and backgrounding or disabling sounds stops playback. Reduced motion affects animation only; menu audio remains controlled by its own switch.
+
+Use `npm run test:menu-audio` to verify audio rendering, interaction triggers, mute, preference persistence and audio-node cleanup.

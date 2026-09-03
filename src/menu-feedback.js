@@ -1,5 +1,5 @@
 // Delegation keeps feedback working when language changes rebuild circuit cards.
-export function installMenuFeedback(menu) {
+export function installMenuFeedback(menu, playSound = () => {}) {
   const timers = new WeakMap();
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   function flash(element) {
@@ -15,6 +15,7 @@ export function installMenuFeedback(menu) {
   menu.addEventListener('click', (event) => {
     const button = event.target.closest('button');
     if (!button || !menu.contains(button) || button.disabled) return;
+    playSound(button.id === 'start' ? 'start' : 'select');
     flash(button);
     if (reduced()) return;
     button.querySelectorAll('.selection-ripple').forEach((node) => node.remove());
@@ -29,6 +30,7 @@ export function installMenuFeedback(menu) {
   });
   menu.addEventListener('change', (event) => {
     if (event.target.matches('select,input')) {
+      playSound('change');
       flash(event.target);
       const setup = event.target.closest('.setup');
       if (setup) flash(setup);

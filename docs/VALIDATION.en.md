@@ -72,3 +72,12 @@ Corrected steering signs with +Z forward and converted AI steering output accord
 - Regenerated 14 Chinese/English desktop, mobile, selection, music, race and result images, checking rendering inputs and file hashes.
 - The English-named `Start-Game.command` retains executable permissions and passed `zsh -n Start-Game.command`; both documentation languages use the new name.
 - 12 tests, bilingual documentation checks and the production build passed.
+
+<!-- section: menu-sound -->
+
+## Menu sounds
+
+- 3 original short cues produced distinct offline-rendered waveforms with peaks below clipping; this is signal testing, not a subjective listening assessment.
+- Chrome verified pointer and keyboard input, setting changes, the start cue, independent mute, saved preferences, no reload autoplay, node cleanup and the English label.
+- `npm run test:menu-audio` passed, along with 12 existing tests and the production build.
+- Chinese/English presentation images were regenerated through the maintenance workflow; sounds do not change vehicle physics or steering.

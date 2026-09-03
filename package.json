@@ -16,7 +16,8 @@
     "docs:generate": "node scripts/docs.mjs",
     "docs:check": "node scripts/docs.mjs --check",
     "render:images": "node scripts/render-images.mjs",
-    "render:check": "node scripts/check-renders.mjs"
+    "render:check": "node scripts/check-renders.mjs",
+    "test:menu-audio": "node tests/menu-audio-browser.mjs"
   },
   "dependencies": {
     "three": "0.180.0"

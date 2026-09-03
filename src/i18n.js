@@ -1,5 +1,6 @@
 // Source keys are Traditional Chinese; English templates are authored locally.
 export const english = {
+  選單音效: 'Menu sounds',
   背景音樂: 'Background music',
   試聽: 'Preview',
   停止試聽: 'Stop preview',
