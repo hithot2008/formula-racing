@@ -1,0 +1,35 @@
+{
+  "inputs": {
+    "index.html": "9ff60fbc05764adde7912f0278b235e22a6e64b5dda50d44f0fa35a825bf4ca8",
+    "package-lock.json": "0f7d4b3f235818a8fbf228c270ce26b1db7aa5167e2f329e5a92c99d0d9f9c3c",
+    "package.json": "7db60fddb7f523ae911246b8c4930888f523de7aa6efb8b1e0aa9b8575b4aa3e",
+    "scripts/render-images.mjs": "fc1d8bdac67f2c177ce50826dd489a8a74f09df821a623dc8e79c85a6ef6e03b",
+    "scripts/render-inputs.mjs": "72e0f167d64d3b6bbe813352bae58d5338f8d7c37e1cdf06b54c3e373e206d54",
+    "src/audio.js": "031fc0d34f162175afbc2412bdbe7baaac99844fdde91de644cfd2b1ec8bce0f",
+    "src/i18n.js": "764bda9f8fbb5fd2afc6f54e0b3d80a3069e53dc62c4d324a491821fe685f3ec",
+    "src/main.js": "584f4bb704eee979712994a95485e86fe45324832d87428945460f7f78d660b4",
+    "src/menu-feedback.js": "dadcc90724c59f231c6da75ff8f1420b140f719f000d16361117b54d235e2c72",
+    "src/music.js": "88dd82307237c82ec674a768a8b70f179f38d58ae8ac13e9f9a8f585a7317f06",
+    "src/physics.js": "ab80487854a302a9678aafe115461c9210c5f7d386ba48567712f1619592e3df",
+    "src/scene.js": "81e88de97d9d34d75b9c35be41205d696f70febc062284ea1b6f329a545c12cb",
+    "src/style.css": "9b46df1a80c99896859447377d25b3a15db49de771a65520483b70d0d2ef8d51",
+    "src/tracks.js": "8898bfe077eeb912cc130b54c7aa0a4c0725c325df38c869ff81be132eb76fbc",
+    "vite.config.js": "f1aa56c0548b0e6bd570a4df557290cbc9d7061f0836ca8ae59968d1b32a5799"
+  },
+  "images": {
+    "artifacts/menu.png": "b93ee4f68de0e9eaceb98ff496330ee762f7ce474a3b89995dcd0d3fb57a7254",
+    "artifacts/selection.png": "70538fa5b0224c16a30da6ac1017e426c41f30352f999dd4467ca248bb98d6fe",
+    "artifacts/mobile-menu.png": "e6a6394abb0dd977990bf7c83018daf031d0be601f123fa9ee11b8e4610a0838",
+    "artifacts/music-menu.png": "c8d6a1f638076e76714ce02930971e8c690db66b9f365ac57124dfec8a96a97c",
+    "artifacts/music-mobile.png": "30b382853eacb8e74c9bbf9af61030bf44c5937c6cec56d6fb25d0b1803a4460",
+    "artifacts/race.png": "0c4cf8af8d4cbbe01051f8fc763ed4032d0dfec3120c44380fb94b319844fe77",
+    "artifacts/results.png": "ed2852632f1134f786e4bb5252f3ef857009bd4a445721155f34a040e519213d",
+    "artifacts/menu-en.png": "04dffe960c83934dcc8ee66fa49bfcb3fa6fa0a501b1a9bce14802619b943b92",
+    "artifacts/selection-en.png": "7a4e17da399cc8767928be9026ae93266e0542e9b88d04ca33934a923d2981eb",
+    "artifacts/mobile-menu-en.png": "44f44c6c072f45209fb1fddd8b8a1f4716f7a7361b847cc8c1796789b9173beb",
+    "artifacts/music-menu-en.png": "ec6894fa9416338d0e8b0dc870ee94486d70d77f0c9b582ebb1c4eb7a2129b11",
+    "artifacts/music-mobile-en.png": "ca023cc1cd099686460b34054b05a5c70246b7ac17e4398fc409a91bb8cf59b3",
+    "artifacts/race-en.png": "733907f00389be9afd31414557ebaf765b51f52f7f101fb977b908a619118bfd",
+    "artifacts/results-en.png": "30c6742cf9cde8a8ac4b5757fbc092bd4006ac3a46eba823a71a56f94c171ee1"
+  }
+}

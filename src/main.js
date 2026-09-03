@@ -1,3 +1,4 @@
+import { installMenuFeedback } from './menu-feedback.js';
 import { BackgroundMusic, MUSIC_TRACKS } from './music.js';
 import { t, getLanguage, setLanguage, translatePage } from './i18n.js';
 import './style.css';
@@ -530,6 +531,7 @@ $('language').onchange = () => {
   renderMusic();
   updateSetup();
 };
+installMenuFeedback($('menu'));
 $('start').onclick = startRace;
 $('difficulty').onchange = updateSetup;
 $('mode').onchange = updateSetup;

@@ -51,6 +51,17 @@
         "heading": "Automated checks and boundaries",
         "body": "Checks reject missing languages, empty sections, list/table structure differences, mismatched command blocks, differing numeric values, broken local document links and stale generated files. GitHub CI runs documentation checks alongside existing tests/builds.\n\nMatching structure can still conceal inaccurate translations or a feature omitted in both languages. Maintainers must review each item against the implementation; do not remove checks or shorten the other language merely to obtain a passing result."
       }
+    },
+    {
+      "id": "renders",
+      "zh": {
+        "heading": "提交時更新渲染圖",
+        "body": "每次 GitHub 提交前，執行 `npm run render:images` 重新產生中英文桌面、手機、選取特效、音樂設定、比賽與結算截圖，再執行 `npm run render:check`。將 `artifacts/` 的圖片與 `render-manifest.json` 隨程式一併提交。\n\n產生器使用獨立本機連接埠 4175，完成後自動關閉。它也驗證滑鼠／鍵盤選取、設定回饋與減少動態效果。一般瀏覽器測試的暫存圖片寫入忽略追蹤的 `artifacts/test-runs/`，不覆寫正式渲染圖。\n\nCI 會核對渲染輸入與圖片雜湊；程式或正式截圖改動但未重新產生時會失敗。這項檢查不能取代人工視覺檢視。"
+      },
+      "en": {
+        "heading": "Refresh renders when committing",
+        "body": "Before each GitHub commit, run `npm run render:images` to regenerate Chinese/English desktop, mobile, selection-effect, music-settings, race and result screenshots, then run `npm run render:check`. Commit the images in `artifacts/` and `render-manifest.json` together with the code.\n\nThe generator uses dedicated local port 4175 and shuts it down afterward. It also verifies pointer/keyboard selection, setting feedback and reduced motion. Ordinary browser-test captures go to ignored `artifacts/test-runs/` without overwriting release renders.\n\nCI compares rendering-input and image hashes; changed code or release screenshots without regeneration fail the check. This cannot replace manual visual review."
+      }
     }
   ]
 }

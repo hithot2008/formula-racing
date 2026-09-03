@@ -63,3 +63,12 @@ Corrected steering signs with +Z forward and converted AI steering output accord
 - `npm test` passed 12 tests, including rejection of missing translations, unequal detail counts, differing numbers and mismatched commands.
 - `npm run build` passed; this change does not modify game physics, music or control logic.
 - GitHub CI now runs `npm run docs:check`; beyond structural checks, both languages were manually compared item by item.
+
+<!-- section: menu-and-renders -->
+
+## Menu feedback, renders and English launcher
+
+- Chrome verified Chinese/English pointer and keyboard selection, setting-change feedback and reduced motion.
+- Regenerated 14 Chinese/English desktop, mobile, selection, music, race and result images, checking rendering inputs and file hashes.
+- The English-named `Start-Game.command` retains executable permissions and passed `zsh -n Start-Game.command`; both documentation languages use the new name.
+- 12 tests, bilingual documentation checks and the production build passed.

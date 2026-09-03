@@ -16,7 +16,7 @@ A locally playable 3D formula racing game with Chinese and English interfaces, o
 
 ## Getting started
 
-Requires Node.js 22+ and a modern WebGL-capable browser. On Mac, double-click **啟動遊戲.command**, or run these commands in the project directory:
+Requires Node.js 22+ and a modern WebGL-capable browser. On Mac, double-click **Start-Game.command**, or run these commands in the project directory:
 
 ```sh
 npm ci
@@ -121,3 +121,11 @@ Chinese and English use the same game code and save format. Every change to feat
 Paired documents cover the README, design specification, development status, validation record and contribution guide. Read the [maintenance rules](CONTRIBUTING.en.md); edit `zh` and `en` for the same section in `docs/source/*.json`, run `npm run docs:generate` to produce Markdown, then run `npm run docs:check`.
 
 GitHub CI checks bilingual fields, sections, list and table structure, command blocks, numeric values and generated-file synchronization. Automation cannot prove semantic equivalence; each item still requires human review.
+
+<!-- section: selection-feedback -->
+
+## Menu interaction feedback
+
+Circuit cards provide hover lift, selection glow and click ripples. Changes to difficulty, mode, language and music also receive confirmation feedback. Keyboard selection uses the same feedback. With system reduced motion enabled, movement and ripples are disabled while static selection feedback remains.
+
+GitHub images are refreshed through `npm run render:images`; `npm run render:check` verifies that screenshots match the current rendering inputs.

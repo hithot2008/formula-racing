@@ -84,6 +84,17 @@
         "heading": "Bilingual documentation synchronization",
         "body": "- Generation and parity checks passed for 10 Chinese/English documents covering the README, design, development status, validation and contribution guide.\n- `npm test` passed 12 tests, including rejection of missing translations, unequal detail counts, differing numbers and mismatched commands.\n- `npm run build` passed; this change does not modify game physics, music or control logic.\n- GitHub CI now runs `npm run docs:check`; beyond structural checks, both languages were manually compared item by item."
       }
+    },
+    {
+      "id": "menu-and-renders",
+      "zh": {
+        "heading": "選單回饋、渲染圖與英文啟動檔",
+        "body": "- Chrome 驗證中英文滑鼠及鍵盤選取、設定變更提示與減少動態效果。\n- 重新產生 14 張中英文桌面、手機、選取、音樂、比賽與結算圖片，並檢查渲染輸入及檔案雜湊。\n- 英文啟動檔 `Start-Game.command` 保留執行權限，通過 `zsh -n Start-Game.command` 語法檢查；中英文說明已同步改名。\n- 12 項測試、雙語文件檢查與正式建置通過。"
+      },
+      "en": {
+        "heading": "Menu feedback, renders and English launcher",
+        "body": "- Chrome verified Chinese/English pointer and keyboard selection, setting-change feedback and reduced motion.\n- Regenerated 14 Chinese/English desktop, mobile, selection, music, race and result images, checking rendering inputs and file hashes.\n- The English-named `Start-Game.command` retains executable permissions and passed `zsh -n Start-Game.command`; both documentation languages use the new name.\n- 12 tests, bilingual documentation checks and the production build passed."
+      }
     }
   ]
 }

@@ -1,3 +1,5 @@
+import { mkdir as ensureScreenshotDir } from 'node:fs/promises';
+await ensureScreenshotDir('artifacts/test-runs', { recursive: true });
 import { chromium } from '@playwright/test';
 import assert from 'node:assert/strict';
 const browser = await chromium.launch({
@@ -34,7 +36,7 @@ try {
   }
   await noChinese('#menu');
   assert.equal(await page.locator('#trackName').innerText(), 'Academy Circuit');
-  await page.screenshot({ path: 'artifacts/menu-en.png' });
+  await page.screenshot({ path: 'artifacts/test-runs/menu-en.png' });
   await page.locator('#help').click();
   await noChinese('#overlay');
   await page.locator('#closeHelp').click();
@@ -54,7 +56,7 @@ try {
   await page.evaluate(() => window.racing.verify.advance(300, true));
   assert.equal(await page.evaluate(() => window.racing.snapshot().state), 'results');
   await noChinese('#overlay');
-  await page.screenshot({ path: 'artifacts/results-en.png' });
+  await page.screenshot({ path: 'artifacts/test-runs/results-en.png' });
   await page.locator('#back').click();
   const records = await page.evaluate(() =>
     JSON.stringify(JSON.parse(localStorage.getItem('formula-racing-v1')).records),
@@ -75,7 +77,7 @@ try {
   await page.setViewportSize({ width: 390, height: 844 });
   assert(await page.locator('.section-heading h2').isVisible());
   assert(await page.locator('.section-heading h2 span').isVisible());
-  await page.screenshot({ path: 'artifacts/mobile-menu-en.png', fullPage: true });
+  await page.screenshot({ path: 'artifacts/test-runs/mobile-menu-en.png', fullPage: true });
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   assert.deepEqual(errors, []);
   console.log(

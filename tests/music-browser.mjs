@@ -1,3 +1,5 @@
+import { mkdir as ensureScreenshotDir } from 'node:fs/promises';
+await ensureScreenshotDir('artifacts/test-runs', { recursive: true });
 import { chromium } from '@playwright/test';
 import assert from 'node:assert/strict';
 const browser = await chromium.launch({
@@ -66,7 +68,7 @@ try {
   await page.waitForTimeout(250);
   assert.equal(await page.evaluate(() => window.racing.snapshot().music.activeNodes), 0);
   await page.selectOption('#language', 'en');
-  await page.screenshot({ path: 'artifacts/music-menu-en.png' });
+  await page.screenshot({ path: 'artifacts/test-runs/music-menu-en.png' });
   assert.equal(await page.locator('#musicPreview').innerText(), 'Preview');
   await page.reload();
   await page.waitForFunction(() => window.racing);
@@ -88,7 +90,7 @@ try {
   await page.waitForFunction(() => !window.racing.snapshot().music.playing);
   await page.locator('#back').click();
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.screenshot({ path: 'artifacts/music-mobile-en.png', fullPage: true });
+  await page.screenshot({ path: 'artifacts/test-runs/music-mobile-en.png', fullPage: true });
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   assert.deepEqual(errors, []);
   console.log(

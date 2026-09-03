@@ -46,3 +46,13 @@ npm run test:music
 Checks reject missing languages, empty sections, list/table structure differences, mismatched command blocks, differing numeric values, broken local document links and stale generated files. GitHub CI runs documentation checks alongside existing tests/builds.
 
 Matching structure can still conceal inaccurate translations or a feature omitted in both languages. Maintainers must review each item against the implementation; do not remove checks or shorten the other language merely to obtain a passing result.
+
+<!-- section: renders -->
+
+## Refresh renders when committing
+
+Before each GitHub commit, run `npm run render:images` to regenerate Chinese/English desktop, mobile, selection-effect, music-settings, race and result screenshots, then run `npm run render:check`. Commit the images in `artifacts/` and `render-manifest.json` together with the code.
+
+The generator uses dedicated local port 4175 and shuts it down afterward. It also verifies pointer/keyboard selection, setting feedback and reduced motion. Ordinary browser-test captures go to ignored `artifacts/test-runs/` without overwriting release renders.
+
+CI compares rendering-input and image hashes; changed code or release screenshots without regeneration fail the check. This cannot replace manual visual review.

@@ -16,7 +16,7 @@
 
 ## 啟動
 
-需要 Node.js 22+ 與支援 WebGL 的現代瀏覽器。Mac 可以雙擊 **啟動遊戲.command**，或在專案目錄執行：
+需要 Node.js 22+ 與支援 WebGL 的現代瀏覽器。Mac 可以雙擊 **Start-Game.command**，或在專案目錄執行：
 
 ```sh
 npm ci
@@ -121,3 +121,11 @@ npm run docs:check
 文件成對涵蓋 README、設計規格、開發狀態、驗證紀錄與貢獻指南。請閱讀 [維護規則](CONTRIBUTING.md)；編輯 `docs/source/*.json` 中同一章節的 `zh` 與 `en`，執行 `npm run docs:generate` 產生 Markdown，再執行 `npm run docs:check`。
 
 GitHub CI 會檢查雙語欄位、章節、清單與表格結構、指令區塊、數值及輸出檔案同步。自動檢查無法證明翻譯語意完全相同，仍須人工逐項核對。
+
+<!-- section: selection-feedback -->
+
+## 選單操作回饋
+
+賽道卡片提供滑過浮起、選取光暈與點選漣漪；難度、模式、語言與音樂選項切換也有確認提示。鍵盤選取使用相同回饋。系統開啟「減少動態效果」時，停用位移與漣漪，保留靜態選取提示。
+
+GitHub 圖片由 `npm run render:images` 統一更新；`npm run render:check` 確認截圖對應目前的渲染輸入。

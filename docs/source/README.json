@@ -23,11 +23,11 @@
       "id": "section-01",
       "zh": {
         "heading": "啟動",
-        "body": "需要 Node.js 22+ 與支援 WebGL 的現代瀏覽器。Mac 可以雙擊 **啟動遊戲.command**，或在專案目錄執行：\n\n```sh\nnpm ci\nnpm run dev\n```\n\n開啟終端顯示的本機網址（預設 http://127.0.0.1:5173）。遊戲資源隨專案打包，遊玩時不需要 CDN、帳號或外部素材服務。第一次安裝依賴需要網路。"
+        "body": "需要 Node.js 22+ 與支援 WebGL 的現代瀏覽器。Mac 可以雙擊 **Start-Game.command**，或在專案目錄執行：\n\n```sh\nnpm ci\nnpm run dev\n```\n\n開啟終端顯示的本機網址（預設 http://127.0.0.1:5173）。遊戲資源隨專案打包，遊玩時不需要 CDN、帳號或外部素材服務。第一次安裝依賴需要網路。"
       },
       "en": {
         "heading": "Getting started",
-        "body": "Requires Node.js 22+ and a modern WebGL-capable browser. On Mac, double-click **啟動遊戲.command**, or run these commands in the project directory:\n\n```sh\nnpm ci\nnpm run dev\n```\n\nOpen the local URL printed by the terminal (default http://127.0.0.1:5173). Game assets are bundled with the project; playing requires no CDN, account or external asset service. The initial dependency installation requires internet access."
+        "body": "Requires Node.js 22+ and a modern WebGL-capable browser. On Mac, double-click **Start-Game.command**, or run these commands in the project directory:\n\n```sh\nnpm ci\nnpm run dev\n```\n\nOpen the local URL printed by the terminal (default http://127.0.0.1:5173). Game assets are bundled with the project; playing requires no CDN, account or external asset service. The initial dependency installation requires internet access."
       }
     },
     {
@@ -94,6 +94,17 @@
       "en": {
         "heading": "Documentation and version parity",
         "body": "Chinese and English use the same game code and save format. Every change to features, controls, limitations or validation results must update both interfaces and documentation in the same commit.\n\nPaired documents cover the README, design specification, development status, validation record and contribution guide. Read the [maintenance rules](CONTRIBUTING.en.md); edit `zh` and `en` for the same section in `docs/source/*.json`, run `npm run docs:generate` to produce Markdown, then run `npm run docs:check`.\n\nGitHub CI checks bilingual fields, sections, list and table structure, command blocks, numeric values and generated-file synchronization. Automation cannot prove semantic equivalence; each item still requires human review."
+      }
+    },
+    {
+      "id": "selection-feedback",
+      "zh": {
+        "heading": "選單操作回饋",
+        "body": "賽道卡片提供滑過浮起、選取光暈與點選漣漪；難度、模式、語言與音樂選項切換也有確認提示。鍵盤選取使用相同回饋。系統開啟「減少動態效果」時，停用位移與漣漪，保留靜態選取提示。\n\nGitHub 圖片由 `npm run render:images` 統一更新；`npm run render:check` 確認截圖對應目前的渲染輸入。"
+      },
+      "en": {
+        "heading": "Menu interaction feedback",
+        "body": "Circuit cards provide hover lift, selection glow and click ripples. Changes to difficulty, mode, language and music also receive confirmation feedback. Keyboard selection uses the same feedback. With system reduced motion enabled, movement and ripples are disabled while static selection feedback remains.\n\nGitHub images are refreshed through `npm run render:images`; `npm run render:check` verifies that screenshots match the current rendering inputs."
       }
     }
   ]

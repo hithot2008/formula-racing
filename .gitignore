@@ -11,3 +11,5 @@ build/
 Library/
 Temp/
 Obj/
+
+artifacts/test-runs/

@@ -14,7 +14,9 @@
     "test:english": "node tests/english-browser.mjs",
     "test:music": "node tests/music-browser.mjs",
     "docs:generate": "node scripts/docs.mjs",
-    "docs:check": "node scripts/docs.mjs --check"
+    "docs:check": "node scripts/docs.mjs --check",
+    "render:images": "node scripts/render-images.mjs",
+    "render:check": "node scripts/check-renders.mjs"
   },
   "dependencies": {
     "three": "0.180.0"
