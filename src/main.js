@@ -240,7 +240,7 @@ function repair() {
   if (state !== 'racing') return;
   const p = cars[0],
     near = track.nearest(p.x, p.z);
-  if (p.speed < 2 && p.s > 14 && p.s < 34 && near.lateral > track.width / 2 - 4) {
+  if (p.speed < 2 && p.s > 14 && p.s < 34 && near.lateral < -(track.width / 2 - 4)) {
     p.pit = 5;
     notify('維修中 · 換胎、修復與補充能源', 5);
   } else notify('駛入起終點後右側綠色維修格，停穩後按 P。', 4);

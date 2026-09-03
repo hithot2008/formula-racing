@@ -358,9 +358,9 @@ export class RaceScene {
       new THREE.MeshStandardMaterial({ color: 0x2f8680 }),
     );
     pitBox.position.set(
-      pit.x + pit.tz * (track.width / 2 - 2),
+      pit.x - pit.tz * (track.width / 2 - 2),
       0.055,
-      pit.z - pit.tx * (track.width / 2 - 2),
+      pit.z + pit.tx * (track.width / 2 - 2),
     );
     pitBox.rotation.y = pit.heading;
     this.scene.add(pitBox);

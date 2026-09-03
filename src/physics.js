@@ -62,7 +62,9 @@ export function stepCar(car, input, track, difficulty, dt = STEP) {
   const maxSteer = 0.48 / (1 + Math.abs(forward) * 0.037);
   car.steer +=
     (clamp(input.steer || 0, -1, 1) * maxSteer - car.steer) * Math.min(1, dt * (5 + 5 * d.assist));
-  let desired = (forward / 3.2) * Math.tan(car.steer);
+  // +Z is forward: driver-right is -X in this right-handed world.
+  // Input steering is positive for right across keyboard, touch, gamepad and AI.
+  let desired = -(forward / 3.2) * Math.tan(car.steer);
   if (d.assist > 0)
     desired = clamp(
       desired,
@@ -130,7 +132,7 @@ export function aiInput(car, track, difficulty, index = 0) {
   const grip = track.weather === 'rain' ? 8 : 14;
   const targetSpeed = clamp(Math.sqrt(grip / curvature), 12, 64) * DIFFICULTIES[difficulty].ai;
   return {
-    steer: clamp(angle(heading - car.heading) * 3, -1, 1),
+    steer: clamp(-angle(heading - car.heading) * 3, -1, 1),
     throttle: car.speed < targetSpeed ? 1 : 0,
     brake: car.speed > targetSpeed + 1 ? 0.65 : 0,
   };

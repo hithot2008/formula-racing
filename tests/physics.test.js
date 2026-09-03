@@ -76,3 +76,28 @@ test('AI completes every circuit without wall damage', () => {
     assert(c.damage < 10, `${def.id}: damage ${c.damage}`);
   }
 });
+
+test('left/right steering follows the driver view at every heading and difficulty', () => {
+  for (const difficulty of ['easy', 'advanced', 'pro']) {
+    for (const heading of [0, 1.2, -2.1]) {
+      for (const steer of [-1, 1]) {
+        const c = createCar(track);
+        Object.assign(c, {
+          x: 0,
+          z: 0,
+          heading,
+          vx: Math.sin(heading) * 15,
+          vz: Math.cos(heading) * 15,
+        });
+        const openRoad = { ...track, nearest: () => ({ s: 0, distance: 0 }) };
+        for (let i = 0; i < 90; i++) stepCar(c, { throttle: 0.4, steer }, openRoad, difficulty);
+        // Forward cross world-up gives the driver's right vector (-cos, 0, sin).
+        const rightDisplacement = -Math.cos(heading) * c.x + Math.sin(heading) * c.z;
+        assert(
+          rightDisplacement * steer > 0.2,
+          `${difficulty}, heading ${heading}, steering ${steer}: ${rightDisplacement}`,
+        );
+      }
+    }
+  }
+});
