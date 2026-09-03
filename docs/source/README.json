@@ -117,6 +117,17 @@
         "heading": "Menu sounds",
         "body": "Button selection, setting changes and race starts use distinct short original synthesized cues for mouse, keyboard and touch interactions. The Menu sounds checkbox independently controls these cues and saves the preference; engine sound and background music have separate switches.\n\nPlayback requires a user interaction and does not trigger merely on hover. Rapid selections cannot stack cue volume, and backgrounding or disabling sounds stops playback. Reduced motion affects animation only; menu audio remains controlled by its own switch.\n\nUse `npm run test:menu-audio` to verify audio rendering, interaction triggers, mute, preference persistence and audio-node cleanup."
       }
+    },
+    {
+      "id": "layout-v2",
+      "zh": {
+        "heading": "賽道配置改版",
+        "body": "場地 2、3、4、6、8 已採用核准的新配置：蔚藍海岸為狹長雙髮夾；山丘環線為多葉連續 S 彎；翡翠森林為三角高速環線；沙漠大獎賽為長直線與低速內場；都會夜間決賽為街區直角彎與減速彎。三種難度共用同一路線。\n\n改版賽道使用 v2 圈速、獎章與幽靈紀錄。舊紀錄保留在本機存檔，但不套用至新路線，也不計入目前路線的獎章總數；目前沒有舊路線重玩或舊紀錄瀏覽介面。場地 1、5、7 的紀錄沿用。語言切換仍共用相同紀錄。\n\n![五條賽道配置比較](docs/previews/track-layouts-v2.png)\n\n實際遊戲畫面：[蔚藍海岸](artifacts/circuit-coast.png) · [山丘環線](artifacts/circuit-hills.png) · [翡翠森林](artifacts/circuit-forest.png) · [沙漠大獎賽](artifacts/circuit-desert.png) · [都會夜間決賽](artifacts/circuit-night.png)"
+      },
+      "en": {
+        "heading": "Circuit layout redesign",
+        "body": "Circuits 2, 3, 4, 6 and 8 now use the approved redesigns: Azure Coast has a long twin-hairpin loop; Highland Ring has asymmetric lobes and linked S bends; Emerald Park has a triangular high-speed loop; Dune Grand Prix has long straights and a technical infield; Neon Metropolis has city-block corners and a chicane. All difficulties share the same layout.\n\nRevised circuits use v2 lap, medal and ghost records. Legacy records remain in local storage but are not applied to the new routes or included in the current medal total; there is currently no interface to replay old routes or browse archived records. Circuits 1, 5 and 7 retain their records. Language switching still shares the same records.\n\n![Five-circuit layout comparison](docs/previews/track-layouts-v2.png)\n\nGameplay screenshots: [Azure Coast](artifacts/circuit-coast-en.png) · [Highland Ring](artifacts/circuit-hills-en.png) · [Emerald Park](artifacts/circuit-forest-en.png) · [Dune Grand Prix](artifacts/circuit-desert-en.png) · [Neon Metropolis](artifacts/circuit-night-en.png)"
+      }
     }
   ]
 }

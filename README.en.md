@@ -139,3 +139,15 @@ Button selection, setting changes and race starts use distinct short original sy
 Playback requires a user interaction and does not trigger merely on hover. Rapid selections cannot stack cue volume, and backgrounding or disabling sounds stops playback. Reduced motion affects animation only; menu audio remains controlled by its own switch.
 
 Use `npm run test:menu-audio` to verify audio rendering, interaction triggers, mute, preference persistence and audio-node cleanup.
+
+<!-- section: layout-v2 -->
+
+## Circuit layout redesign
+
+Circuits 2, 3, 4, 6 and 8 now use the approved redesigns: Azure Coast has a long twin-hairpin loop; Highland Ring has asymmetric lobes and linked S bends; Emerald Park has a triangular high-speed loop; Dune Grand Prix has long straights and a technical infield; Neon Metropolis has city-block corners and a chicane. All difficulties share the same layout.
+
+Revised circuits use v2 lap, medal and ghost records. Legacy records remain in local storage but are not applied to the new routes or included in the current medal total; there is currently no interface to replay old routes or browse archived records. Circuits 1, 5 and 7 retain their records. Language switching still shares the same records.
+
+![Five-circuit layout comparison](docs/previews/track-layouts-v2.png)
+
+Gameplay screenshots: [Azure Coast](artifacts/circuit-coast-en.png) · [Highland Ring](artifacts/circuit-hills-en.png) · [Emerald Park](artifacts/circuit-forest-en.png) · [Dune Grand Prix](artifacts/circuit-desert-en.png) · [Neon Metropolis](artifacts/circuit-night-en.png)

@@ -81,3 +81,14 @@ Corrected steering signs with +Z forward and converted AI steering output accord
 - Chrome verified pointer and keyboard input, setting changes, the start cue, independent mute, saved preferences, no reload autoplay, node cleanup and the English label.
 - `npm run test:menu-audio` passed, along with 12 existing tests and the production build.
 - Chinese/English presentation images were regenerated through the maintenance workflow; sounds do not change vehicle physics or steering.
+
+<!-- section: layout-v2 -->
+
+## Circuit redesign validation
+
+- The 5 new routes match the approved coordinates; sampled non-adjacent road-edge clearance is at least approximately 25 metres, with barrier clearance checked as well.
+- Easy, advanced and pro each cover 5 circuits with 6 cars completing 3 laps, including collisions and no resets; maximum damage stays below 10%.
+- Tests cover versioned record isolation, legacy preservation and current medal counts.
+- Browser checks cover new route loading, time-trial completion and saved records; bilingual gameplay renders are updated.
+- Autodrive verifies drivability, not completed human difficulty balancing.
+- All 17 automated tests and the production build pass; the render set expands to 24 images, including bilingual gameplay views of the 5 revised circuits.

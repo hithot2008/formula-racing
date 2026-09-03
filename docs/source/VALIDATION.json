@@ -106,6 +106,17 @@
         "heading": "Menu sounds",
         "body": "- 3 original short cues produced distinct offline-rendered waveforms with peaks below clipping; this is signal testing, not a subjective listening assessment.\n- Chrome verified pointer and keyboard input, setting changes, the start cue, independent mute, saved preferences, no reload autoplay, node cleanup and the English label.\n- `npm run test:menu-audio` passed, along with 12 existing tests and the production build.\n- Chinese/English presentation images were regenerated through the maintenance workflow; sounds do not change vehicle physics or steering."
       }
+    },
+    {
+      "id": "layout-v2",
+      "zh": {
+        "heading": "賽道改版驗證",
+        "body": "- 5 條新路線與核准座標一致，非相鄰路段路面邊緣間距至少約 25 公尺，另檢查護牆間距。\n- 容易、進階、專業各驗證 5 條賽道，每場 6 車完成 3 圈，含車輛碰撞，無回正；最大車損低於 10%。\n- 驗證新版紀錄鍵隔離、舊紀錄保留與目前獎章計數。\n- 瀏覽器驗證新路線載入、計時完賽與紀錄保存；更新中英文遊戲展示圖。\n- 自動駕駛驗證可行駛性，不代表真人難度平衡已完成。\n- 本次 17 項自動測試通過，正式建置通過；展示圖擴充為 24 張，含 5 條改版賽道的雙語實際畫面。"
+      },
+      "en": {
+        "heading": "Circuit redesign validation",
+        "body": "- The 5 new routes match the approved coordinates; sampled non-adjacent road-edge clearance is at least approximately 25 metres, with barrier clearance checked as well.\n- Easy, advanced and pro each cover 5 circuits with 6 cars completing 3 laps, including collisions and no resets; maximum damage stays below 10%.\n- Tests cover versioned record isolation, legacy preservation and current medal counts.\n- Browser checks cover new route loading, time-trial completion and saved records; bilingual gameplay renders are updated.\n- Autodrive verifies drivability, not completed human difficulty balancing.\n- All 17 automated tests and the production build pass; the render set expands to 24 images, including bilingual gameplay views of the 5 revised circuits."
+      }
     }
   ]
 }

@@ -139,3 +139,15 @@ GitHub 圖片由 `npm run render:images` 統一更新；`npm run render:check` �
 首次播放需要使用者操作；不在滑過時自動播放。快速連續選取不會堆疊音量，切到背景或關閉音效會停止聲音。系統減少動態效果只影響動畫，音效仍由獨立開關控制。
 
 使用 `npm run test:menu-audio` 驗證音訊渲染、操作觸發、靜音、偏好保存及音訊節點清理。
+
+<!-- section: layout-v2 -->
+
+## 賽道配置改版
+
+場地 2、3、4、6、8 已採用核准的新配置：蔚藍海岸為狹長雙髮夾；山丘環線為多葉連續 S 彎；翡翠森林為三角高速環線；沙漠大獎賽為長直線與低速內場；都會夜間決賽為街區直角彎與減速彎。三種難度共用同一路線。
+
+改版賽道使用 v2 圈速、獎章與幽靈紀錄。舊紀錄保留在本機存檔，但不套用至新路線，也不計入目前路線的獎章總數；目前沒有舊路線重玩或舊紀錄瀏覽介面。場地 1、5、7 的紀錄沿用。語言切換仍共用相同紀錄。
+
+![五條賽道配置比較](docs/previews/track-layouts-v2.png)
+
+實際遊戲畫面：[蔚藍海岸](artifacts/circuit-coast.png) · [山丘環線](artifacts/circuit-hills.png) · [翡翠森林](artifacts/circuit-forest.png) · [沙漠大獎賽](artifacts/circuit-desert.png) · [都會夜間決賽](artifacts/circuit-night.png)

@@ -1,3 +1,4 @@
+import { trackRecordKey, currentMedalCount } from './records.js';
 import { MenuAudio } from './menu-audio.js';
 import { installMenuFeedback } from './menu-feedback.js';
 import { BackgroundMusic, MUSIC_TRACKS } from './music.js';
@@ -53,7 +54,7 @@ const music = new BackgroundMusic();
 const menuAudio = new MenuAudio();
 let musicPreview = false;
 function recordKey() {
-  return `${track.id}:${$('difficulty').value}:${$('mode').value}`;
+  return trackRecordKey(track, $('difficulty').value, $('mode').value);
 }
 function trackSvg(t) {
   const xs = t.samples.map((p) => p.x),
@@ -81,12 +82,12 @@ function updateSetup() {
     time: t('完成 2 圈，追逐最佳單圈。離開賽道或回正將使該圈無效。'),
     academy: t('完成 1 圈：保持在白線內、不回正，並將車損控制在 5% 以下。'),
   };
-  $('modeHint').textContent = hints[$('mode').value];
+  $('modeHint').textContent =
+    hints[$('mode').value] +
+    (track.layoutVersion > 1 ? ' ' + t('新版路線：圈速與幽靈紀錄分開保存。') : '');
   const r = save.records[recordKey()];
   $('record').textContent = t('個人紀錄 {time}', { time: format(r?.best) });
-  $('medalCount').textContent = String(
-    Object.values(save.records).filter((r) => r?.medal > 0).length,
-  ).padStart(2, '0');
+  $('medalCount').textContent = String(currentMedalCount(save.records, tracks)).padStart(2, '0');
   save.settings = {
     difficulty: $('difficulty').value,
     mode: $('mode').value,
@@ -660,6 +661,9 @@ try {
     snapshot: () => ({
       state,
       track: track.id,
+      layoutVersion: track.layoutVersion || 1,
+      recordKey: recordKey(),
+      hasGhost: !!ghostTrace,
       elapsed,
       mode,
       difficulty,

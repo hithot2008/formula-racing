@@ -1,5 +1,12 @@
 // Source keys are Traditional Chinese; English templates are authored locally.
 export const english = {
+  '新版路線：圈速與幽靈紀錄分開保存。':
+    'Revised layout: lap and ghost records are stored separately.',
+  雙髮夾往返: 'Twin hairpin return',
+  '連續 S 彎': 'Linked S bends',
+  高速掃彎: 'Fast sweepers',
+  直線與低速內場: 'Straights and technical infield',
+  街區直角彎: 'City block corners',
   選單音效: 'Menu sounds',
   背景音樂: 'Background music',
   試聽: 'Preview',

@@ -59,18 +59,18 @@ Support custom assists and AI strength, with leaderboards separated by assist se
 
 ## Circuits and challenges
 
-| Circuit | Character | Learning objective |
+| Circuit | Current layout | Learning objective |
 | --- | --- | --- |
 | Academy Circuit | Wide, short layout | Basic steering and braking |
-| Azure Coast | Medium-speed corners and straights | Braking points and exits |
-| Highland Ring | Elevation and blind corners | Weight transfer |
-| Emerald Park | Fast linked corners | Downforce and rhythm |
-| Port Velocity | Narrow walls | Precise lines and overtaking |
-| Dune Grand Prix | Heat and high wear | Tyres and pit strategy |
-| Silver Rain | Low grip and changing weather | Throttle control and tyre timing |
-| Neon Metropolis | Compound corners and long distance | Combined driving and strategy |
+| Azure Coast | Long twin-hairpin loop | Hard braking and exit acceleration |
+| Highland Ring | Asymmetric lobes and linked S bends | Transitions and compound-corner lines |
+| Emerald Park | Triangular high-speed loop | Smooth steering and speed retention |
+| Port Velocity | Narrow street circuit | Precise lines |
+| Dune Grand Prix | Long straights and technical infield | Braking, traction and tyre management |
+| Silver Rain | Wet circuit | Low-grip throttle control |
+| Neon Metropolis | City-block corners and chicane | Short straights and precise braking |
 
-Each circuit offers skill, timing and race challenges, for 24 in total. Timed challenges offer bronze, silver and gold targets plus a personal ghost.
+Each circuit offers skill, timing and race challenges, for 24 in total. Timed challenges offer bronze, silver and gold targets plus a personal ghost. Current routes are planar; elevation changes and dynamic weather are not implemented.
 
 <!-- section: section-06 -->
 
@@ -95,3 +95,11 @@ The full goal favours desktop delivery; the browser prototype validates handling
 ## Remaining decisions
 
 Minimum hardware, performance targets and native packaging still need decisions. Multiplayer is outside the first milestone. Full content may change based on prototype results; the features described here are plans, not a statement of completion.
+
+<!-- section: layout-records -->
+
+## Layout versions and records
+
+Circuits 2, 3, 4, 6 and 8 now use the approved redesigns: Azure Coast has a long twin-hairpin loop; Highland Ring has asymmetric lobes and linked S bends; Emerald Park has a triangular high-speed loop; Dune Grand Prix has long straights and a technical infield; Neon Metropolis has city-block corners and a chicane. All difficulties share the same layout.
+
+Revised circuits use v2 lap, medal and ghost records. Legacy records remain in local storage but are not applied to the new routes or included in the current medal total; there is currently no interface to replay old routes or browse archived records. Circuits 1, 5 and 7 retain their records. Language switching still shares the same records.

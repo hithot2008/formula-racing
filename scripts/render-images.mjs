@@ -103,6 +103,68 @@ try {
     assert.equal(await page.evaluate(() => window.racing.snapshot().state), 'results');
     await page.waitForTimeout(800);
     await shot('results');
+    // Exercise each revised route through the actual UI, persistence and lap logic.
+    await page.evaluate(() => {
+      const save = JSON.parse(localStorage.getItem('formula-racing-v1'));
+      for (const id of ['coast', 'hills', 'forest', 'desert', 'night'])
+        save.records[`${id}:advanced:time`] = {
+          best: 1,
+          medal: 3,
+          ghost: [
+            [0, 9999, 9999, 0],
+            [1, 9999, 9999, 0],
+          ],
+        };
+      localStorage.setItem('formula-racing-v1', JSON.stringify(save));
+    });
+    await page.reload();
+    await page.waitForFunction(() => window.racing?.verify);
+    await page.selectOption('#difficulty', 'advanced');
+    await page.selectOption('#mode', 'time');
+    for (const [index, id] of [
+      [1, 'coast'],
+      [2, 'hills'],
+      [3, 'forest'],
+      [5, 'desert'],
+      [7, 'night'],
+    ]) {
+      await page.locator(`[data-track="${index}"]`).click();
+      assert.match(await page.locator('#record').innerText(), /—/);
+      if (language === 'en') {
+        assert(!/[\p{Script=Han}]/u.test(await page.locator('#trackMeta').innerText()));
+        assert(!/[\p{Script=Han}]/u.test(await page.locator('#modeHint').innerText()));
+      }
+      await page.locator('#start').click();
+      let snapshot = await page.evaluate(() => window.racing.snapshot());
+      assert.equal(snapshot.layoutVersion, 2);
+      assert.equal(snapshot.hasGhost, false);
+      assert.equal(snapshot.recordKey, `${id}:advanced:time:v2`);
+      await page.evaluate(() => window.racing.verify.advance(17, true));
+      const frame = await page.evaluate(() => window.racing.snapshot().renderer.frame);
+      await page.waitForFunction((f) => window.racing.snapshot().renderer.frame > f + 20, frame);
+      await shot('circuit-' + id);
+      snapshot = await page.evaluate(() => window.racing.verify.advance(600, true));
+      assert.equal(snapshot.state, 'results');
+      const records = await page.evaluate(
+        () => JSON.parse(localStorage.getItem('formula-racing-v1')).records,
+      );
+      assert.equal(records[`${id}:advanced:time`].best, 1);
+      assert.equal(records[`${id}:advanced:time`].ghost[0][1], 9999);
+      const current = records[`${id}:advanced:time:v2`];
+      assert(
+        current && Number.isFinite(current.best) && current.best > 1,
+        `${id}: valid lap saved`,
+      );
+      assert(current.ghost?.length > 1, `${id}: new ghost saved`);
+      await page.locator('#back').click();
+      await page.reload();
+      await page.waitForFunction(() => window.racing?.verify);
+      await page.locator('#start').click();
+      assert.equal(await page.evaluate(() => window.racing.snapshot().hasGhost), true);
+      await page.evaluate(() => window.racing.verify.advance(600, true));
+      await page.locator('#back').click();
+      console.log(`Verified ${language} ${id}: v2 time trial, legacy preservation, ghost reload.`);
+    }
     assert.deepEqual(errors, []);
     await page.close();
     console.log(

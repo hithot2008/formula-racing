@@ -73,6 +73,17 @@
         "heading": "Bilingual maintenance — implemented",
         "body": "- [x] Five complete paired Chinese/English documents with reciprocal links\n- [x] Paired section sources, Markdown generator and CI consistency checks\n- [x] Maintenance rules requiring both languages in the same commit"
       }
+    },
+    {
+      "id": "layout-v2",
+      "zh": {
+        "heading": "已完成：賽道改版",
+        "body": "場地 2、3、4、6、8 已採用核准的新配置：蔚藍海岸為狹長雙髮夾；山丘環線為多葉連續 S 彎；翡翠森林為三角高速環線；沙漠大獎賽為長直線與低速內場；都會夜間決賽為街區直角彎與減速彎。三種難度共用同一路線。\n\n改版賽道使用 v2 圈速、獎章與幽靈紀錄。舊紀錄保留在本機存檔，但不套用至新路線，也不計入目前路線的獎章總數；目前沒有舊路線重玩或舊紀錄瀏覽介面。場地 1、5、7 的紀錄沿用。語言切換仍共用相同紀錄。"
+      },
+      "en": {
+        "heading": "Completed: circuit redesign",
+        "body": "Circuits 2, 3, 4, 6 and 8 now use the approved redesigns: Azure Coast has a long twin-hairpin loop; Highland Ring has asymmetric lobes and linked S bends; Emerald Park has a triangular high-speed loop; Dune Grand Prix has long straights and a technical infield; Neon Metropolis has city-block corners and a chicane. All difficulties share the same layout.\n\nRevised circuits use v2 lap, medal and ghost records. Legacy records remain in local storage but are not applied to the new routes or included in the current medal total; there is currently no interface to replay old routes or browse archived records. Circuits 1, 5 and 7 retain their records. Language switching still shares the same records."
+      }
     }
   ]
 }

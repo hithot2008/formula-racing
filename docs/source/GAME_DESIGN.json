@@ -67,11 +67,11 @@
       "id": "section-05",
       "zh": {
         "heading": "賽道與關卡",
-        "body": "| 賽道 | 特性 | 學習目標 |\n| --- | --- | --- |\n| 新秀測試場 | 寬廣短賽道 | 基本轉向與煞車 |\n| 海岸賽道 | 中速彎與直線 | 煞車點與出彎 |\n| 山丘賽道 | 高低差、盲彎 | 重量轉移 |\n| 森林高速賽道 | 高速連續彎 | 下壓力與節奏 |\n| 港灣街道賽 | 狹窄護牆 | 精準走線與超車 |\n| 沙漠大獎賽 | 高溫高磨耗 | 輪胎與進站策略 |\n| 雨中技術賽道 | 低抓地、變天 | 油門與換胎時機 |\n| 都會夜間決賽 | 複合彎、長距離 | 綜合駕駛與策略 |\n\n每條賽道包含技巧、計時及正式賽事三種主線挑戰，共 24 個。計時設銅銀金牌與個人幽靈車。"
+        "body": "| 賽道 | 目前配置 | 學習目標 |\n| --- | --- | --- |\n| 新秀測試場 | 寬廣短賽道 | 基本轉向與煞車 |\n| 蔚藍海岸 | 狹長雙髮夾 | 重煞車與出彎加速 |\n| 山丘環線 | 多葉連續 S 彎 | 換向與複合彎走線 |\n| 翡翠森林 | 三角高速環線 | 平順轉向與速度維持 |\n| 港灣街道 | 狹窄街道 | 精準走線 |\n| 沙漠大獎賽 | 長直線與低速內場 | 煞車、循跡與輪胎管理 |\n| 銀雨技術場 | 濕地環線 | 低抓地油門控制 |\n| 都會夜間決賽 | 街區直角彎與減速彎 | 短直線與精準煞車 |\n\n每條賽道包含技巧、計時及正式賽事三種挑戰，共 24 個。計時設銅銀金牌與個人幽靈車。目前路線為平面；山丘高低差與動態天候尚未實作。"
       },
       "en": {
         "heading": "Circuits and challenges",
-        "body": "| Circuit | Character | Learning objective |\n| --- | --- | --- |\n| Academy Circuit | Wide, short layout | Basic steering and braking |\n| Azure Coast | Medium-speed corners and straights | Braking points and exits |\n| Highland Ring | Elevation and blind corners | Weight transfer |\n| Emerald Park | Fast linked corners | Downforce and rhythm |\n| Port Velocity | Narrow walls | Precise lines and overtaking |\n| Dune Grand Prix | Heat and high wear | Tyres and pit strategy |\n| Silver Rain | Low grip and changing weather | Throttle control and tyre timing |\n| Neon Metropolis | Compound corners and long distance | Combined driving and strategy |\n\nEach circuit offers skill, timing and race challenges, for 24 in total. Timed challenges offer bronze, silver and gold targets plus a personal ghost."
+        "body": "| Circuit | Current layout | Learning objective |\n| --- | --- | --- |\n| Academy Circuit | Wide, short layout | Basic steering and braking |\n| Azure Coast | Long twin-hairpin loop | Hard braking and exit acceleration |\n| Highland Ring | Asymmetric lobes and linked S bends | Transitions and compound-corner lines |\n| Emerald Park | Triangular high-speed loop | Smooth steering and speed retention |\n| Port Velocity | Narrow street circuit | Precise lines |\n| Dune Grand Prix | Long straights and technical infield | Braking, traction and tyre management |\n| Silver Rain | Wet circuit | Low-grip throttle control |\n| Neon Metropolis | City-block corners and chicane | Short straights and precise braking |\n\nEach circuit offers skill, timing and race challenges, for 24 in total. Timed challenges offer bronze, silver and gold targets plus a personal ghost. Current routes are planar; elevation changes and dynamic weather are not implemented."
       }
     },
     {
@@ -105,6 +105,17 @@
       "en": {
         "heading": "Remaining decisions",
         "body": "Minimum hardware, performance targets and native packaging still need decisions. Multiplayer is outside the first milestone. Full content may change based on prototype results; the features described here are plans, not a statement of completion."
+      }
+    },
+    {
+      "id": "layout-records",
+      "zh": {
+        "heading": "路線版本與紀錄",
+        "body": "場地 2、3、4、6、8 已採用核准的新配置：蔚藍海岸為狹長雙髮夾；山丘環線為多葉連續 S 彎；翡翠森林為三角高速環線；沙漠大獎賽為長直線與低速內場；都會夜間決賽為街區直角彎與減速彎。三種難度共用同一路線。\n\n改版賽道使用 v2 圈速、獎章與幽靈紀錄。舊紀錄保留在本機存檔，但不套用至新路線，也不計入目前路線的獎章總數；目前沒有舊路線重玩或舊紀錄瀏覽介面。場地 1、5、7 的紀錄沿用。語言切換仍共用相同紀錄。"
+      },
+      "en": {
+        "heading": "Layout versions and records",
+        "body": "Circuits 2, 3, 4, 6 and 8 now use the approved redesigns: Azure Coast has a long twin-hairpin loop; Highland Ring has asymmetric lobes and linked S bends; Emerald Park has a triangular high-speed loop; Dune Grand Prix has long straights and a technical infield; Neon Metropolis has city-block corners and a chicane. All difficulties share the same layout.\n\nRevised circuits use v2 lap, medal and ghost records. Legacy records remain in local storage but are not applied to the new routes or included in the current medal total; there is currently no interface to replay old routes or browse archived records. Circuits 1, 5 and 7 retain their records. Language switching still shares the same records."
       }
     }
   ]

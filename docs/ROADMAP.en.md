@@ -67,3 +67,11 @@ Distinguish implemented, verified and untested items at every stage. Validate ha
 - [x] Five complete paired Chinese/English documents with reciprocal links
 - [x] Paired section sources, Markdown generator and CI consistency checks
 - [x] Maintenance rules requiring both languages in the same commit
+
+<!-- section: layout-v2 -->
+
+## Completed: circuit redesign
+
+Circuits 2, 3, 4, 6 and 8 now use the approved redesigns: Azure Coast has a long twin-hairpin loop; Highland Ring has asymmetric lobes and linked S bends; Emerald Park has a triangular high-speed loop; Dune Grand Prix has long straights and a technical infield; Neon Metropolis has city-block corners and a chicane. All difficulties share the same layout.
+
+Revised circuits use v2 lap, medal and ghost records. Legacy records remain in local storage but are not applied to the new routes or included in the current medal total; there is currently no interface to replay old routes or browse archived records. Circuits 1, 5 and 7 retain their records. Language switching still shares the same records.
