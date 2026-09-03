@@ -7,11 +7,18 @@
     <title>FORMULA / 01 — 方程式賽車</title>
   </head>
   <body>
-    <canvas id="world" aria-label="3D 賽車場景"></canvas>
+    <canvas id="world" aria-label="3D 賽車場景" data-i18n-aria-label="3D 賽車場景"></canvas>
     <div id="rain" class="hidden"></div>
     <main id="menu" class="screen">
       <header class="topbar">
         <a class="brand" href="#">F<span>／</span>01 <small>FORMULA RACING</small></a>
+        <label class="language-picker"
+          ><span>Language</span
+          ><select id="language" aria-label="Language">
+            <option value="zh-Hant">繁體中文</option>
+            <option value="en">English</option>
+          </select></label
+        >
         <div class="topmeta">
           <span class="dot"></span> LOCAL MOTORSPORT <span class="season">2026 SEASON</span>
         </div>
@@ -19,72 +26,108 @@
       <section class="hero">
         <div>
           <div class="eyebrow">THE PURSUIT OF THE PERFECT LAP</div>
-          <h1>每一個彎，<br /><em>都更靠近極限。</em></h1>
-          <p>從第一次起跑，到掌握每一秒。<br />八座賽道，三種挑戰，由你定義速度。</p>
+          <h1>
+            <span data-i18n="每一個彎，">每一個彎，</span><br /><em
+              ><span data-i18n="都更靠近極限。">都更靠近極限。</span></em
+            >
+          </h1>
+          <p>
+            <span data-i18n="從第一次起跑，到掌握每一秒。">從第一次起跑，到掌握每一秒。</span
+            ><br /><span data-i18n="八座賽道，三種挑戰，由你定義速度。"
+              >八座賽道，三種挑戰，由你定義速度。</span
+            >
+          </p>
           <div class="hero-stats">
-            <span><b>08</b> 原創賽道</span><span><b>24</b> 賽事挑戰</span
-            ><span><b id="medalCount">00</b> 已獲獎章</span>
+            <span><b>08</b> <span data-i18n="原創賽道">原創賽道</span></span
+            ><span><b>24</b> <span data-i18n="賽事挑戰">賽事挑戰</span></span
+            ><span><b id="medalCount">00</b> <span data-i18n="已獲獎章">已獲獎章</span></span>
           </div>
         </div>
         <aside class="setup">
           <div class="panel-kicker">RACE CONTROL <span>01 / SETUP</span></div>
-          <h2 id="trackName">新秀測試場</h2>
+          <h2 id="trackName"></h2>
           <p id="trackMeta"></p>
           <div class="form-row">
             <label
-              >駕駛難度<select id="difficulty">
-                <option value="easy">容易 · 駕駛輔助</option>
-                <option value="advanced">進階 · 部分輔助</option>
-                <option value="pro">專業 · 無輔助</option>
+              ><span data-i18n="駕駛難度">駕駛難度</span
+              ><select id="difficulty">
+                <option value="easy" data-i18n="容易 · 駕駛輔助">容易 · 駕駛輔助</option>
+                <option value="advanced" data-i18n="進階 · 部分輔助">進階 · 部分輔助</option>
+                <option value="pro" data-i18n="專業 · 無輔助">專業 · 無輔助</option>
               </select></label
             ><label
-              >比賽模式<select id="mode">
-                <option value="race">大獎賽 · 3 圈</option>
-                <option value="time">計時挑戰 · 2 圈</option>
-                <option value="academy">技巧挑戰 · 1 圈</option>
+              ><span data-i18n="比賽模式">比賽模式</span
+              ><select id="mode">
+                <option value="race" data-i18n="大獎賽 · 3 圈">大獎賽 · 3 圈</option>
+                <option value="time" data-i18n="計時挑戰 · 2 圈">計時挑戰 · 2 圈</option>
+                <option value="academy" data-i18n="技巧挑戰 · 1 圈">技巧挑戰 · 1 圈</option>
               </select></label
             >
           </div>
           <p id="modeHint" class="hint"></p>
           <div class="audio-row">
-            <label><input id="sound" type="checkbox" checked /> 引擎音效</label
-            ><span id="record">個人紀錄 —</span>
+            <label
+              ><input id="sound" type="checkbox" checked />
+              <span data-i18n="引擎音效">引擎音效</span></label
+            ><span id="record"></span>
           </div>
-          <button id="start" class="primary">前往起跑線 <span>↗</span></button>
-          <div class="input-guide">WASD / 方向鍵 駕駛　·　Space 能源加速</div>
+          <button id="start" class="primary">
+            <span data-i18n="前往起跑線">前往起跑線</span> <span>↗</span>
+          </button>
+          <div class="input-guide">
+            <span data-i18n="WASD / 方向鍵 駕駛　·　Space 能源加速"
+              >WASD / 方向鍵 駕駛　·　Space 能源加速</span
+            >
+          </div>
+          <div class="touch-guide" data-i18n="支援螢幕按鈕；建議使用鍵盤或手把">
+            支援螢幕按鈕；建議使用鍵盤或手把
+          </div>
         </aside>
       </section>
       <section class="circuits">
         <div class="section-heading">
-          <h2>選擇你的下一場挑戰</h2>
+          <h2><span data-i18n="選擇你的下一場挑戰">選擇你的下一場挑戰</span></h2>
           <span>CIRCUIT SELECT <b>↘</b></span>
         </div>
         <div id="tracks" class="track-grid"></div>
       </section>
       <footer>
-        <span>原創方程式賽車體驗 · 無官方 F1 隸屬關係</span><button id="help">操作指南 ↗</button>
+        <span
+          ><span data-i18n="原創方程式賽車體驗 · 無官方 F1 隸屬關係"
+            >原創方程式賽車體驗 · 無官方 F1 隸屬關係</span
+          ></span
+        ><button id="help"><span data-i18n="操作指南 ↗">操作指南 ↗</span></button>
       </footer>
     </main>
-    <section id="hud" class="hidden" aria-label="比賽資訊">
+    <section id="hud" class="hidden" aria-label="比賽資訊" data-i18n-aria-label="比賽資訊">
       <div class="race-top">
         <div class="race-brand">F<span>／</span>01 <small id="raceTrack"></small></div>
         <div class="race-controls">
-          <button id="cameraBtn" title="切換鏡頭 C">鏡頭 C</button
-          ><button id="pauseBtn" title="暫停 Esc">暫停 Ⅱ</button>
+          <button id="cameraBtn" title="切換鏡頭 C" data-i18n-title="切換鏡頭 C">
+            <span data-i18n="鏡頭 C">鏡頭 C</span></button
+          ><button id="pauseBtn" title="暫停 Esc" data-i18n-title="暫停 Esc">
+            <span data-i18n="暫停 Ⅱ">暫停 Ⅱ</span>
+          </button>
         </div>
       </div>
       <div class="standings">
         <div class="board-title">LIVE TIMING <span id="lapLabel">LAP 1 / 3</span></div>
         <div id="positions"></div>
         <div class="timing">
-          <span>本圈 <b id="lapTime">0:00.000</b></span
-          ><span>最佳 <b id="bestTime">—</b></span>
+          <span><span data-i18n="本圈">本圈</span> <b id="lapTime">0:00.000</b></span
+          ><span><span data-i18n="最佳">最佳</span> <b id="bestTime">—</b></span>
         </div>
       </div>
       <div id="message" role="status"></div>
       <div id="lights" class="hidden"></div>
       <div class="map-panel">
-        <canvas id="minimap" width="200" height="160" aria-label="賽道小地圖"></canvas
+        <canvas
+          id="minimap"
+          width="200"
+          height="160"
+          aria-label="賽道小地圖"
+          data-i18n-aria-label="賽道小地圖"
+        ></canvas
         ><span id="weatherLabel"></span>
       </div>
       <div class="telemetry">
@@ -107,11 +150,16 @@
           ><span>DAMAGE <b id="damage">0%</b></span>
         </div>
         <div class="boost-bar"><i id="energyBar"></i></div>
-        <p id="drivingHint">Space 加速 · C 鏡頭 · R 回正 +5 秒 · P 維修</p>
+        <p id="drivingHint">
+          <span data-i18n="Space 加速 · C 鏡頭 · R 回正 +5 秒 · P 維修"
+            >Space 加速 · C 鏡頭 · R 回正 +5 秒 · P 維修</span
+          >
+        </p>
       </div>
       <div id="touch">
         <button data-key="ArrowLeft">◀</button><button data-key="ArrowRight">▶</button
-        ><button data-key="ArrowDown">煞車</button><button data-key="ArrowUp">油門</button>
+        ><button data-key="ArrowDown"><span data-i18n="煞車">煞車</span></button
+        ><button data-key="ArrowUp"><span data-i18n="油門">油門</span></button>
       </div>
     </section>
     <div

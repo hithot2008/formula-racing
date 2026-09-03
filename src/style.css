@@ -136,7 +136,7 @@ h1 em {
   gap: 32px;
   margin-top: 25px;
 }
-.hero-stats span {
+.hero-stats > span {
   font-size: 10px;
   color: #abb5b4;
   display: flex;
@@ -227,7 +227,7 @@ input[type='checkbox'] {
 .primary:hover {
   background: #e6ffa0;
 }
-.primary span {
+.primary > span:last-child {
   font-size: 23px;
 }
 .input-guide {
@@ -250,7 +250,7 @@ input[type='checkbox'] {
   font-size: 14px;
   font-weight: 500;
 }
-.section-heading span {
+.section-heading > span {
   font-size: 9px;
   letter-spacing: 1.5px;
   color: #acb7b6;
@@ -418,7 +418,7 @@ footer button {
   font-size: 10px;
   color: #b1bdba;
 }
-.timing span {
+.timing > span {
   display: flex;
   justify-content: space-between;
 }
@@ -749,7 +749,7 @@ footer button {
   .track-card h3 {
     margin-top: 34px;
   }
-  .section-heading span {
+  .section-heading > span {
     display: none;
   }
   .race-top {
@@ -812,10 +812,97 @@ footer button {
     padding: 15px;
   }
   .input-guide {
-    font-size: 0;
+    display: none;
   }
-  .input-guide:after {
-    content: '支援螢幕按鈕；建議使用鍵盤或手把';
-    font-size: 10px;
+  .touch-guide {
+    display: block;
+  }
+}
+
+.language-picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  margin-right: 28px;
+  font-size: 10px;
+}
+.language-picker select {
+  width: 112px;
+  padding: 8px;
+  margin: 0;
+  font-size: 11px;
+}
+.touch-guide {
+  display: none;
+  font-size: 10px;
+  color: #929e9e;
+  text-align: center;
+  margin-top: 12px;
+}
+html[lang='en'] h1 {
+  font-size: clamp(30px, 3.5vw, 53px);
+  letter-spacing: -1.5px;
+}
+html[lang='en'] .track-card {
+  min-height: 140px;
+}
+html[lang='en'] .track-card h3 {
+  margin-top: 34px;
+  font-size: 14px;
+}
+html[lang='en'] .track-card svg {
+  height: 44px;
+  top: 8px;
+}
+html[lang='en'] .track-card p {
+  display: none;
+}
+html[lang='en'] .track-card .tag {
+  position: static;
+  display: block;
+  margin-top: 8px;
+}
+html[lang='en'] .hero-stats {
+  gap: 20px;
+}
+html[lang='en'] .hero-stats > span {
+  gap: 6px;
+}
+html[lang='en'] .modal dl {
+  grid-template-columns: 1.2fr 1fr;
+  font-size: 12px;
+}
+@media (max-width: 1000px) {
+  .topmeta .season {
+    display: none;
+  }
+  .language-picker {
+    margin-right: 16px;
+  }
+}
+@media (max-width: 700px) {
+  .language-picker {
+    margin-right: 0;
+  }
+  .language-picker > span {
+    display: none;
+  }
+  .brand small {
+    display: none;
+  }
+  html[lang='en'] h1 {
+    font-size: 34px;
+  }
+  html[lang='en'] .form-row {
+    grid-template-columns: 1fr;
+  }
+  .primary > span:first-child {
+    font-size: 14px;
+  }
+}
+@media (pointer: coarse) {
+  .touch-guide {
+    display: block;
   }
 }

@@ -1,5 +1,9 @@
 # FORMULA / 01
 
+[English documentation](README.en.md)
+
+選單上方的 **Language** 可切換 English／繁體中文；語言偏好會保存，切換不影響既有圈速、獎章與幽靈車紀錄。
+
 可在本機瀏覽器遊玩的 3D 方程式賽車遊戲。繁體中文介面，原創賽道與車輛，使用 Three.js 渲染。
 
 ![賽道選單](artifacts/menu.png)

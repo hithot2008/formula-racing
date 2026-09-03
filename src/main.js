@@ -1,3 +1,4 @@
+import { t, getLanguage, setLanguage, translatePage } from './i18n.js';
 import './style.css';
 import { TRACKS, makeTrack, clamp } from './tracks.js';
 import { STEP, DIFFICULTIES, createCar, stepCar, aiInput, collide, resetCar } from './physics.js';
@@ -18,7 +19,7 @@ function persist() {
   try {
     localStorage.setItem(STORE, JSON.stringify(save));
   } catch {
-    notify('無法寫入本機紀錄；本場仍可繼續。', 6);
+    notify(t('無法寫入本機紀錄；本場仍可繼續。'), 6);
   }
 }
 const format = (t) =>
@@ -65,17 +66,18 @@ function trackSvg(t) {
 }
 const tracks = TRACKS.map(makeTrack);
 function updateSetup() {
-  const t = track;
-  $('trackName').textContent = t.name;
-  $('trackMeta').textContent = `${t.region} / ${(t.length / 1000).toFixed(2)} KM / ${t.tag}`;
+  const circuit = track;
+  $('trackName').textContent = t(circuit.name);
+  $('trackMeta').textContent =
+    `${t(circuit.region)} / ${(circuit.length / 1000).toFixed(2)} KM / ${t(circuit.tag)}`;
   const hints = {
-    race: '與 5 名對手爭奪頒獎台。完成 3 圈，以名次獲得獎章。',
-    time: '完成 2 圈，追逐最佳單圈。離開賽道或回正將使該圈無效。',
-    academy: '完成 1 圈：保持在白線內、不回正，並將車損控制在 5% 以下。',
+    race: t('與 5 名對手爭奪頒獎台。完成 3 圈，以名次獲得獎章。'),
+    time: t('完成 2 圈，追逐最佳單圈。離開賽道或回正將使該圈無效。'),
+    academy: t('完成 1 圈：保持在白線內、不回正，並將車損控制在 5% 以下。'),
   };
   $('modeHint').textContent = hints[$('mode').value];
   const r = save.records[recordKey()];
-  $('record').textContent = `個人紀錄 ${format(r?.best)}`;
+  $('record').textContent = t('個人紀錄 {time}', { time: format(r?.best) });
   $('medalCount').textContent = String(
     Object.values(save.records).filter((r) => r?.medal > 0).length,
   ).padStart(2, '0');
@@ -84,6 +86,7 @@ function updateSetup() {
     mode: $('mode').value,
     sound: $('sound').checked,
     track: selected,
+    language: getLanguage(),
   };
   persist();
 }
@@ -134,11 +137,11 @@ function startRace() {
   show('lights', true);
   $('raceTrack').textContent = track.en;
   $('weatherLabel').textContent = {
-    clear: '晴朗 · 乾地',
-    overcast: '陰天 · 乾地',
-    sunset: '黃昏 · 高溫',
-    rain: '雨天 · 濕地',
-    night: '夜間 · 乾地',
+    clear: t('晴朗 · 乾地'),
+    overcast: t('陰天 · 乾地'),
+    sunset: t('黃昏 · 高溫'),
+    rain: t('雨天 · 濕地'),
+    night: t('夜間 · 乾地'),
   }[track.weather];
   $('lights').innerHTML = '<i></i>'.repeat(5);
   audio.enabled = $('sound').checked;
@@ -196,13 +199,14 @@ function finish() {
     ghost: bestTrace && p.bestLap < best ? bestTrace : old.ghost || null,
   };
   persist();
-  const resultMedal = ['挑戰未達成', '銅牌完賽', '銀牌表現', '金牌達成'][medal];
+  const resultMedal = [t('挑戰未達成'), t('銅牌完賽'), t('銀牌表現'), t('金牌達成')][medal];
   $('overlayEyebrow').textContent = 'CHEQUERED FLAG';
-  $('overlayTitle').textContent = mode === 'race' ? `第 ${rank} 名 · 完賽` : '挑戰完成';
+  $('overlayTitle').textContent =
+    mode === 'race' ? t('第 {rank} 名 · 完賽', { rank }) : t('挑戰完成');
   $('overlayBody').innerHTML =
-    `<div class="result-medal">${resultMedal}</div><dl><dt>賽道</dt><dd>${track.name}</dd><dt>駕駛難度</dt><dd>${DIFFICULTIES[difficulty].name}</dd><dt>總時間</dt><dd>${format(elapsed)}</dd><dt>最佳有效單圈</dt><dd>${format(p.bestLap)}</dd><dt>回正罰停（已計入）</dt><dd>+${p.penalty} 秒</dd><dt>車輛損傷</dt><dd>${p.damage.toFixed(1)}%</dd></dl><p>${medal ? '獎章與有效圈速已保存在這台裝置。' : '下次嘗試保持在白線內、避免碰撞與回正。'}${mode === 'race' ? ' 名次依抵達終點順序；回正會另外停車 5 秒。' : ''}</p>`;
+    `<div class="result-medal">${resultMedal}</div><dl><dt>${t('賽道')}</dt><dd>${t(track.name)}</dd><dt>${t('駕駛難度')}</dt><dd>${t(DIFFICULTIES[difficulty].name)}</dd><dt>${t('總時間')}</dt><dd>${format(elapsed)}</dd><dt>${t('最佳有效單圈')}</dt><dd>${format(p.bestLap)}</dd><dt>${t('回正罰停（已計入）')}</dt><dd>+${t('{seconds} 秒', { seconds: p.penalty })}</dd><dt>${t('車輛損傷')}</dt><dd>${p.damage.toFixed(1)}%</dd></dl><p>${medal ? t('獎章與有效圈速已保存在這台裝置。') : t('下次嘗試保持在白線內、避免碰撞與回正。')}${mode === 'race' ? t(' 名次依抵達終點順序；回正會另外停車 5 秒。') : ''}</p>`;
   $('overlayActions').innerHTML =
-    '<button class="primary" id="again">再次挑戰 ↗</button><button class="secondary" id="back">返回賽道選單</button>';
+    `<button class="primary" id="again">${t('再次挑戰 ↗')}</button><button class="secondary" id="back">${t('返回賽道選單')}</button>`;
   $('again').onclick = startRace;
   $('back').onclick = backMenu;
   show('overlay', true);
@@ -223,11 +227,12 @@ function pause() {
   keys.clear();
   audio.update(0, 0, false);
   $('overlayEyebrow').textContent = 'RACE CONTROL';
-  $('overlayTitle').textContent = '暫停，調整呼吸。';
-  $('overlayBody').innerHTML =
-    '<p>W / ↑ 油門 · S / ↓ 煞車<br>A D / ← → 轉向 · Space 能源加速<br>C 切換鏡頭 · R 回正（停車 5 秒）<br>P 維修：起終點後右側綠色區域，停穩後按下<br>支援標準手把：左搖桿轉向、RT 油門、LT 煞車、A 加速。</p>';
+  $('overlayTitle').textContent = t('暫停，調整呼吸。');
+  $('overlayBody').innerHTML = t(
+    '<p>W / ↑ 油門 · S / ↓ 煞車<br>A D / ← → 轉向 · Space 能源加速<br>C 切換鏡頭 · R 回正（停車 5 秒）<br>P 維修：起終點後右側綠色區域，停穩後按下<br>支援標準手把：左搖桿轉向、RT 油門、LT 煞車、A 加速。</p>',
+  );
   $('overlayActions').innerHTML =
-    '<button class="primary" id="resume">繼續比賽 ↗</button><button class="secondary" id="restart">重新起跑</button><button class="secondary" id="back">返回選單</button>';
+    `<button class="primary" id="resume">${t('繼續比賽 ↗')}</button><button class="secondary" id="restart">${t('重新起跑')}</button><button class="secondary" id="back">${t('返回選單')}</button>`;
   $('resume').onclick = () => {
     state = previous;
     show('overlay', false);
@@ -242,8 +247,8 @@ function repair() {
     near = track.nearest(p.x, p.z);
   if (p.speed < 2 && p.s > 14 && p.s < 34 && near.lateral < -(track.width / 2 - 4)) {
     p.pit = 5;
-    notify('維修中 · 換胎、修復與補充能源', 5);
-  } else notify('駛入起終點後右側綠色維修格，停穩後按 P。', 4);
+    notify(t('維修中 · 換胎、修復與補充能源'), 5);
+  } else notify(t('駛入起終點後右側綠色維修格，停穩後按 P。'), 4);
 }
 function input() {
   let steer =
@@ -268,7 +273,7 @@ function tick(dt) {
     if (countdown <= 0) {
       state = 'racing';
       show('lights', false);
-      notify('綠燈！找到你的煞車點。', 3);
+      notify(t('綠燈！找到你的煞車點。'), 3);
     }
     return;
   }
@@ -284,7 +289,7 @@ function tick(dt) {
         c.damage = 0;
         c.energy = 100;
         c.pits++;
-        if (i === 0) notify('維修完成，安全返回賽道。');
+        if (i === 0) notify(t('維修完成，安全返回賽道。'));
       }
       return;
     }
@@ -325,7 +330,9 @@ function tick(dt) {
       } else {
         if (i === 0)
           notify(
-            c.lapValid ? `完成第 ${laps} 圈 · ${format(lapTime)}` : '本圈離開賽道，圈速無效。',
+            c.lapValid
+              ? t('完成第 {lap} 圈 · {time}', { lap: laps, time: format(lapTime) })
+              : t('本圈離開賽道，圈速無效。'),
             3,
           );
         c.lapValid = true;
@@ -370,24 +377,24 @@ function updateHud() {
   $('positions').innerHTML = sorted()
     .map(
       ({ c, i }, r) =>
-        `<div class="position-row ${i === 0 ? 'player' : ''}"><span>${r + 1}</span><i style="background:#${colors[i].toString(16).padStart(6, '0')}"></i><span class="driver">${names[i]}</span><span class="gap">${i === 0 ? 'YOU' : c.finished ? 'FIN' : `${Math.round(c.total - p.total)} m`}</span></div>`,
+        `<div class="position-row ${i === 0 ? 'player' : ''}"><span>${r + 1}</span><i style="background:#${colors[i].toString(16).padStart(6, '0')}"></i><span class="driver">${t(names[i])}</span><span class="gap">${i === 0 ? 'YOU' : c.finished ? 'FIN' : `${Math.round(c.total - p.total)} m`}</span></div>`,
     )
     .join('');
   $('message').textContent =
     p.resetWait > 0
-      ? `回正罰停 · ${Math.ceil(p.resetWait)} 秒`
+      ? t('回正罰停 · {seconds} 秒', { seconds: Math.ceil(p.resetWait) })
       : p.pit > 0
-        ? `維修中 · ${Math.ceil(p.pit)} 秒`
+        ? t('維修中 · {seconds} 秒', { seconds: Math.ceil(p.pit) })
         : elapsed < noticeUntil
           ? notice
           : p.offroad
-            ? '超出白線 · 本圈圈速無效'
+            ? t('超出白線 · 本圈圈速無效')
             : elapsed < collisionUntil
-              ? '黃旗 · 注意碰撞'
+              ? t('黃旗 · 注意碰撞')
               : p.damage > 60
-                ? '車損嚴重，請返回維修區'
+                ? t('車損嚴重，請返回維修區')
                 : p.slip > 7
-                  ? '抓地不足 · 收油並減少轉向'
+                  ? t('抓地不足 · 收油並減少轉向')
                   : '';
   drawMap();
 }
@@ -422,6 +429,30 @@ function drawMap() {
     ctx.fill();
   });
 }
+function renderTracks() {
+  $('tracks').innerHTML = tracks
+    .map(
+      (circuit, i) =>
+        `<button class="track-card" data-track="${i}" aria-label="${t('選擇{track}', { track: t(circuit.name) })}" aria-pressed="false"><span class="number">${String(i + 1).padStart(2, '0')} / ${circuit.weather === 'rain' ? 'WET' : circuit.weather === 'night' ? 'NIGHT' : 'DRY'}</span>${trackSvg(circuit)}<h3>${t(circuit.name)}</h3><p>${circuit.en}</p><span class="tag">${t(circuit.tag)}</span></button>`,
+    )
+    .join('');
+  document
+    .querySelectorAll('[data-track]')
+    .forEach((b) => (b.onclick = () => selectTrack(Number(b.dataset.track))));
+  document.querySelectorAll('.track-card').forEach((b, i) => {
+    b.classList.toggle('selected', i === selected);
+    b.setAttribute('aria-pressed', String(i === selected));
+  });
+}
+setLanguage(save.settings.language);
+translatePage();
+$('language').value = getLanguage();
+$('language').onchange = () => {
+  setLanguage($('language').value);
+  translatePage();
+  renderTracks();
+  updateSetup();
+};
 $('start').onclick = startRace;
 $('difficulty').onchange = updateSetup;
 $('mode').onchange = updateSetup;
@@ -433,10 +464,12 @@ $('pauseBtn').onclick = pause;
 $('cameraBtn').onclick = () => (view.cameraMode = (view.cameraMode + 1) % 3);
 $('help').onclick = () => {
   $('overlayEyebrow').textContent = 'DRIVER HANDBOOK';
-  $('overlayTitle').textContent = '你的第一圈，從這裡開始。';
-  $('overlayBody').innerHTML =
-    '<p>油門：W / ↑　煞車：S / ↓<br>轉向：A D / ← →　能源加速：Space<br>鏡頭：C　暫停：Esc　回正：R（停車 5 秒）<br>維修：P（在起終點後右側綠色格停穩）</p><p>入彎前先煞車，彎中少踩油門，車頭轉正後再加速。容易模式提供循跡與煞車輔助；專業模式需要更細膩的操控。綠色虛線是路線參考，並非煞車提示。</p><p>標準手把：左搖桿轉向、RT 油門、LT 煞車、A 加速。<br>紀錄依賽道、模式與難度分開保存在此瀏覽器。清除瀏覽資料會移除紀錄。<br>計時金牌：平均速度超過 79.2 km/h；銀牌：超過 61.2 km/h；銅牌：完成有效單圈。</p>';
-  $('overlayActions').innerHTML = '<button class="primary" id="closeHelp">準備好了 ↗</button>';
+  $('overlayTitle').textContent = t('你的第一圈，從這裡開始。');
+  $('overlayBody').innerHTML = t(
+    '<p>油門：W / ↑　煞車：S / ↓<br>轉向：A D / ← →　能源加速：Space<br>鏡頭：C　暫停：Esc　回正：R（停車 5 秒）<br>維修：P（在起終點後右側綠色格停穩）</p><p>入彎前先煞車，彎中少踩油門，車頭轉正後再加速。容易模式提供循跡與煞車輔助；專業模式需要更細膩的操控。綠色虛線是路線參考，並非煞車提示。</p><p>標準手把：左搖桿轉向、RT 油門、LT 煞車、A 加速。<br>紀錄依賽道、模式與難度分開保存在此瀏覽器。清除瀏覽資料會移除紀錄。<br>計時金牌：平均速度超過 79.2 km/h；銀牌：超過 61.2 km/h；銅牌：完成有效單圈。</p>',
+  );
+  $('overlayActions').innerHTML =
+    `<button class="primary" id="closeHelp">${t('準備好了 ↗')}</button>`;
   $('closeHelp').onclick = () => show('overlay', false);
   show('overlay', true);
 };
@@ -459,7 +492,7 @@ window.addEventListener('keydown', (e) => {
     if (e.code === 'KeyR' && !cars[0].resetWait && !cars[0].pit) {
       resetCar(cars[0], track);
       cars[0].resetWait = 5;
-      notify('已回正 · 罰停 5 秒');
+      notify(t('已回正 · 罰停 5 秒'));
     }
     if (e.code === 'KeyP') repair();
   }
@@ -486,15 +519,7 @@ for (const b of document.querySelectorAll('[data-key]')) {
 }
 try {
   view = new RaceScene($('world'));
-  $('tracks').innerHTML = tracks
-    .map(
-      (t, i) =>
-        `<button class="track-card" data-track="${i}" aria-label="選擇${t.name}" aria-pressed="false"><span class="number">${String(i + 1).padStart(2, '0')} / ${t.weather === 'rain' ? 'WET' : t.weather === 'night' ? 'NIGHT' : 'DRY'}</span>${trackSvg(t)}<h3>${t.name}</h3><p>${t.en}</p><span class="tag">${t.tag}</span></button>`,
-    )
-    .join('');
-  document
-    .querySelectorAll('[data-track]')
-    .forEach((b) => (b.onclick = () => selectTrack(Number(b.dataset.track))));
+  renderTracks();
   if (DIFFICULTIES[save.settings.difficulty]) $('difficulty').value = save.settings.difficulty;
   if (['race', 'time', 'academy'].includes(save.settings.mode))
     $('mode').value = save.settings.mode;
@@ -546,7 +571,7 @@ try {
     };
 } catch (error) {
   $('fatal').textContent =
-    `無法啟動 3D 畫面。請使用支援 WebGL 的瀏覽器並開啟硬體加速。${error.message}`;
+    `${t('無法啟動 3D 畫面。請使用支援 WebGL 的瀏覽器並開啟硬體加速。')} ${error.message}`;
   show('fatal', true);
   console.error(error);
 }
